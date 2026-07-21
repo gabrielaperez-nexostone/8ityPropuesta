@@ -1,0 +1,4 @@
+"use client";
+import Link from "next/link";
+import { DropdownMenu as Primitive } from "radix-ui";
+export function DropdownMenu({ items }: { items: ReadonlyArray<{ label: string; href: string }> }) { return <Primitive.Root><Primitive.Trigger className="grid size-11 place-items-center rounded-full border border-border bg-surface text-xl" aria-label="Open menu">≡</Primitive.Trigger><Primitive.Portal><Primitive.Content align="end" sideOffset={10} className="z-50 min-w-56 rounded-2xl border border-border bg-surface p-2 shadow-xl">{items.map((item) => <Primitive.Item key={item.href} asChild><Link href={item.href} className="block rounded-xl px-4 py-3 text-sm outline-none hover:bg-primary-soft focus:bg-primary-soft">{item.label}</Link></Primitive.Item>)}</Primitive.Content></Primitive.Portal></Primitive.Root>; }

@@ -1,0 +1,4 @@
+"use client";
+import { Tabs as Primitive } from "radix-ui";
+export type Tab = { value: string; label: string; content: string };
+export function Tabs({ tabs }: { tabs: Tab[] }) { return <Primitive.Root defaultValue={tabs[0]?.value}><Primitive.List className="flex gap-2 overflow-x-auto pb-2">{tabs.map((tab) => <Primitive.Trigger key={tab.value} value={tab.value} className="whitespace-nowrap rounded-full border border-border px-4 py-2 text-sm font-medium text-muted-foreground data-[state=active]:border-primary data-[state=active]:bg-primary-soft data-[state=active]:text-primary-deep">{tab.label}</Primitive.Trigger>)}</Primitive.List>{tabs.map((tab) => <Primitive.Content key={tab.value} value={tab.value} className="mt-5 rounded-2xl bg-primary-soft p-5 leading-7 text-muted-foreground outline-none">{tab.content}</Primitive.Content>)}</Primitive.Root>; }

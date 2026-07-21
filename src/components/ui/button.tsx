@@ -1,0 +1,4 @@
+import { Slot } from "radix-ui";
+import { cn } from "@/lib/utils";
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & { asChild?: boolean; variant?: "primary" | "outline" | "ghost"; size?: "sm" | "md" };
+export function Button({ asChild, variant = "primary", size = "md", className, ...props }: ButtonProps) { const Component = asChild ? Slot.Root : "button"; return <Component className={cn("inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-200 disabled:pointer-events-none disabled:opacity-50", size === "sm" ? "min-h-10 px-5 text-sm" : "min-h-12 px-6", variant === "primary" && "bg-primary text-primary-foreground shadow-sm hover:-translate-y-0.5 hover:bg-primary-hero", variant === "outline" && "border border-border bg-surface text-foreground hover:border-primary/40 hover:bg-primary-soft", variant === "ghost" && "text-foreground hover:bg-primary-soft", className)} {...props} />; }

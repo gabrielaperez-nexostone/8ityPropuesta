@@ -1,0 +1,2 @@
+import { Button } from "@/components/ui/button";
+export function CarouselControls({ previous, next, disabledPrevious, disabledNext }: { previous: () => void; next: () => void; disabledPrevious: boolean; disabledNext: boolean }) { return <div className="flex gap-2"><Button variant="outline" size="sm" onClick={previous} disabled={disabledPrevious} aria-label="Diapositiva anterior">←</Button><Button variant="outline" size="sm" onClick={next} disabled={disabledNext} aria-label="Diapositiva siguiente">→</Button></div>; }

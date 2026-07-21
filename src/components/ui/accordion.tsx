@@ -1,0 +1,4 @@
+"use client";
+import { Accordion as Primitive } from "radix-ui";
+export type AccordionItem = { value: string; title: string; content: string };
+export function Accordion({ items }: { items: AccordionItem[] }) { return <Primitive.Root type="single" collapsible className="divide-y divide-border">{items.map((item) => <Primitive.Item key={item.value} value={item.value}><Primitive.Header><Primitive.Trigger className="group flex w-full items-center justify-between py-5 text-left font-semibold"><span>{item.title}</span><span className="transition-transform group-data-[state=open]:rotate-45" aria-hidden>+</span></Primitive.Trigger></Primitive.Header><Primitive.Content className="overflow-hidden text-muted-foreground data-[state=open]:animate-in"><p className="pb-5 leading-7">{item.content}</p></Primitive.Content></Primitive.Item>)}</Primitive.Root>; }
