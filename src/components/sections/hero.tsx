@@ -7,13 +7,266 @@ import { FadeIn } from "@/components/motion/fade-in";
 import { useLanguage } from "@/providers/language-provider";
 
 const copy = {
-  es: { eyebrow: "Sistema operativo para startups", titleA: "Tu empresa,", titleB: "operando como un solo sistema.", description: "8ity conecta dinero, clientes, trabajo y agentes de IA en una capa operativa compartida.", primary: "Descubrir 8ity", secondary: "Explorar sistema", activity: "Actividad en vivo", signal: "Señal operativa", finance: "Finanzas", pipeline: "Pipeline", work: "Ejecución", alert: "Agente detectó una variación de runway", stats: ["Bancos conectables", "Integraciones", "Menos esfuerzo"] },
-  en: { eyebrow: "Operating system for startups", titleA: "Your company,", titleB: "running as one system.", description: "8ity connects money, customers, work and AI agents through one shared operating layer.", primary: "Discover 8ity", secondary: "Explore system", activity: "Live activity", signal: "Operating signal", finance: "Finance", pipeline: "Pipeline", work: "Execution", alert: "Agent detected a runway variance", stats: ["Connectable banks", "Integrations", "Less effort"] },
+  es: {
+    eyebrow: "ERP inteligente para empresas modernas",
+    titleA: "Toda tu empresa,",
+    titleB: "gestionada desde un solo ERP.",
+    description:
+      "8ity centraliza finanzas, operaciones, proyectos, personas y datos. El CRM es una herramienta adicional dentro de un ecosistema conectado con agentes de IA.",
+    primary: "Descubrir 8ity",
+    secondary: "Explorar el ERP",
+    activity: "Actividad en vivo",
+    signal: "Señal operativa",
+    finance: "Finanzas",
+    pipeline: "Pipeline CRM",
+    work: "Ejecución",
+    alert: "Agente detectó una variación de runway",
+    stats: ["Bancos conectables", "Integraciones", "Menos esfuerzo"],
+  },
+  en: {
+    eyebrow: "Intelligent ERP for modern companies",
+    titleA: "Your whole company,",
+    titleB: "managed from one ERP.",
+    description:
+      "8ity centralizes finance, operations, projects, people and data. CRM is an additional tool inside an ecosystem connected with AI agents.",
+    primary: "Discover 8ity",
+    secondary: "Explore the ERP",
+    activity: "Live activity",
+    signal: "Operating signal",
+    finance: "Finance",
+    pipeline: "CRM pipeline",
+    work: "Execution",
+    alert: "Agent detected a runway variance",
+    stats: ["Connectable banks", "Integrations", "Less effort"],
+  },
 } as const;
 
 export function Hero() {
-  const { language } = useLanguage(); const t = copy[language];
-  return <section className="relative min-h-[calc(100svh-5rem)] overflow-hidden pb-10 pt-20 lg:pt-28"><div className="hero-grid pointer-events-none absolute inset-0 opacity-70" /><div className="pointer-events-none absolute -right-32 top-16 size-[42rem] rounded-full bg-primary/10 blur-[130px]" /><FadeIn className="relative z-10"><div className="grid items-end gap-10 lg:grid-cols-[1.25fr_.75fr]"><div><p className="mb-6 flex items-center gap-3 font-mono text-xs uppercase tracking-[.2em] text-primary"><span className="size-1.5 rounded-full bg-primary shadow-[0_0_14px_var(--primary)]" />{t.eyebrow}</p><h1 className="text-balance text-[clamp(3.7rem,8.4vw,8.4rem)] font-medium leading-[.86] tracking-[-.075em]">{t.titleA}<br /><span className="text-muted-foreground">{t.titleB}</span></h1></div><div className="pb-2 lg:pb-4"><p className="max-w-md text-lg leading-8 text-muted-foreground">{t.description}</p><div className="mt-7 flex flex-col gap-3 sm:flex-row"><Dialog trigger={<Button>{t.primary} <span aria-hidden>↗</span></Button>} /><Button asChild variant="outline"><Link href="#plataforma">{t.secondary} ↓</Link></Button></div></div></div></FadeIn><FadeIn delay={.14} className="relative z-10 mt-16"><div className="overflow-hidden rounded-[1.4rem] border border-border bg-[#07110f] shadow-[0_40px_120px_rgba(0,0,0,.55)]"><div className="flex h-12 items-center justify-between border-b border-border px-4 sm:px-6"><div className="flex items-center gap-2"><span className="size-2 rounded-full bg-danger/80" /><span className="size-2 rounded-full bg-warning/80" /><span className="size-2 rounded-full bg-success/80" /></div><div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[.16em] text-muted-foreground"><span className="size-1.5 animate-pulse rounded-full bg-primary" />{t.activity}</div></div><div className="grid min-h-[32rem] lg:grid-cols-[15rem_1fr]"><aside className="hidden border-r border-border p-5 lg:block"><div className="flex items-center gap-2.5"><Image src="/8ity-orb.webp" alt="" width={30} height={30} /><span className="font-semibold">8ity OS</span></div><div className="mt-10 space-y-1">{["Overview", "Finance", "CRM", "Projects", "AI Agents", "Automations"].map((item, index) => <div key={item} className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-xs ${index === 0 ? "bg-primary-soft text-primary" : "text-muted-foreground"}`}><span className="font-mono text-[9px]">0{index + 1}</span>{item}</div>)}</div></aside><div className="relative overflow-hidden p-4 sm:p-7"><div className="scanlines pointer-events-none absolute inset-0 opacity-25" /><div className="relative grid gap-4 sm:grid-cols-3"><Metric label={t.finance} value="$1.24M" delta="+12.4%" bars={[45,58,52,74,68,84,92]} /><Metric label={t.pipeline} value="$384K" delta="18 deals" bars={[38,55,47,70,62,77,88]} /><Metric label={t.work} value="86%" delta="24 active" bars={[72,64,78,70,88,80,94]} /></div><div className="relative mt-4 grid gap-4 lg:grid-cols-[1.35fr_.65fr]"><div className="rounded-xl border border-border bg-background/45 p-5"><div className="flex items-center justify-between"><span className="font-mono text-[10px] uppercase tracking-[.16em] text-muted-foreground">{t.signal}</span><span className="font-mono text-[10px] text-primary">LIVE</span></div><div className="mt-10 flex h-40 items-end gap-1.5">{[32,48,41,62,54,76,58,82,67,91,72,86,64,96,79,88,72,94,84,100,76,92].map((height, index) => <span key={index} className="flex-1 rounded-t-sm bg-primary/70" style={{ height: `${height}%`, opacity: .35 + index / 36 }} />)}</div><div className="mt-4 flex justify-between font-mono text-[9px] text-muted-foreground"><span>JAN</span><span>MAR</span><span>JUN</span><span>SEP</span><span>DEC</span></div></div><div className="flex flex-col gap-4"><div className="rounded-xl border border-primary/25 bg-primary-soft/65 p-5"><div className="flex items-center gap-3"><Image src="/8ity-orb.webp" alt="" width={38} height={38} /><div><p className="text-xs font-semibold">Chief of Staff</p><p className="mt-1 font-mono text-[9px] text-primary">ANALYSIS COMPLETE</p></div></div><p className="mt-5 text-sm leading-6 text-muted-foreground">{t.alert}</p><div className="mt-5 h-1 overflow-hidden rounded-full bg-border"><div className="h-full w-[78%] bg-primary" /></div></div><div className="grid flex-1 grid-cols-2 gap-3">{["Runway", "MRR", "Tasks", "Deals"].map((label, index) => <div key={label} className="rounded-xl border border-border bg-background/45 p-4"><p className="font-mono text-[9px] uppercase text-muted-foreground">{label}</p><p className="mt-3 text-xl font-medium">{["18 mo", "+8.2%", "124", "31"][index]}</p></div>)}</div></div></div></div></div></div><div className="grid border-x border-b border-border bg-surface/80 sm:grid-cols-3">{[["1,000+",t.stats[0]],["50+",t.stats[1]],["80%",t.stats[2]]].map(([value,label]) => <div key={label} className="border-b border-border px-6 py-5 sm:border-b-0 sm:border-r last:border-0"><p className="text-2xl font-medium text-primary">{value}</p><p className="mt-1 text-xs text-muted-foreground">{label}</p></div>)}</div></FadeIn></section>;
+  const { language } = useLanguage();
+  const t = copy[language];
+  return (
+    <section className="relative min-h-[calc(100svh-5rem)] overflow-hidden pb-10 pt-20 lg:pt-28">
+      <div className="hero-grid pointer-events-none absolute inset-0 opacity-70" />
+      <div className="pointer-events-none absolute -right-32 top-16 size-[42rem] rounded-full bg-primary/10 blur-[130px]" />
+      <FadeIn className="relative z-10">
+        <div className="grid items-end gap-10 lg:grid-cols-[1.25fr_.75fr]">
+          <div>
+            <p className="mb-6 flex items-center gap-3 font-mono text-xs uppercase tracking-[.2em] text-primary">
+              <span className="size-1.5 rounded-full bg-primary shadow-[0_0_14px_var(--primary)]" />
+              {t.eyebrow}
+            </p>
+            <h1 className="text-balance text-[clamp(3.7rem,8.4vw,8.4rem)] font-medium leading-[.86] tracking-[-.075em]">
+              {t.titleA}
+              <br />
+              <span className="text-muted-foreground">{t.titleB}</span>
+            </h1>
+          </div>
+          <div className="pb-2 lg:pb-4">
+            <p className="max-w-md text-lg leading-8 text-muted-foreground">
+              {t.description}
+            </p>
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+              <Dialog
+                trigger={
+                  <Button>
+                    {t.primary} <span aria-hidden>↗</span>
+                  </Button>
+                }
+              />
+              <Button asChild variant="outline">
+                <Link href="#plataforma">{t.secondary} ↓</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </FadeIn>
+      <FadeIn delay={0.14} className="relative z-10 mt-16">
+        <div className="overflow-hidden rounded-[1.4rem] border border-border bg-[#07110f] shadow-[0_40px_120px_rgba(0,0,0,.55)]">
+          <div className="flex h-12 items-center justify-between border-b border-border px-4 sm:px-6">
+            <div className="flex items-center gap-2">
+              <span className="size-2 rounded-full bg-danger/80" />
+              <span className="size-2 rounded-full bg-warning/80" />
+              <span className="size-2 rounded-full bg-success/80" />
+            </div>
+            <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[.16em] text-muted-foreground">
+              <span className="size-1.5 animate-pulse rounded-full bg-primary" />
+              {t.activity}
+            </div>
+          </div>
+          <div className="grid min-h-[32rem] lg:grid-cols-[15rem_1fr]">
+            <aside className="hidden border-r border-border p-5 lg:block">
+              <div className="flex items-center gap-2.5">
+                <Image src="/8ity-orb.webp" alt="" width={30} height={30} />
+                <span className="font-semibold">8ity ERP</span>
+              </div>
+              <div className="mt-10 space-y-1">
+                {[
+                  "Overview",
+                  "Finance",
+                  "Operations",
+                  "Projects",
+                  "People & Admin",
+                  "CRM + AI tools",
+                ].map((item, index) => (
+                  <div
+                    key={item}
+                    className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-xs ${index === 0 ? "bg-primary-soft text-primary" : "text-muted-foreground"}`}
+                  >
+                    <span className="font-mono text-[9px]">0{index + 1}</span>
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </aside>
+            <div className="relative overflow-hidden p-4 sm:p-7">
+              <div className="scanlines pointer-events-none absolute inset-0 opacity-25" />
+              <div className="relative grid gap-4 sm:grid-cols-3">
+                <Metric
+                  label={t.finance}
+                  value="$1.24M"
+                  delta="+12.4%"
+                  bars={[45, 58, 52, 74, 68, 84, 92]}
+                />
+                <Metric
+                  label={t.pipeline}
+                  value="$384K"
+                  delta="18 deals"
+                  bars={[38, 55, 47, 70, 62, 77, 88]}
+                />
+                <Metric
+                  label={t.work}
+                  value="86%"
+                  delta="24 active"
+                  bars={[72, 64, 78, 70, 88, 80, 94]}
+                />
+              </div>
+              <div className="relative mt-4 grid gap-4 lg:grid-cols-[1.35fr_.65fr]">
+                <div className="rounded-xl border border-border bg-background/45 p-5">
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono text-[10px] uppercase tracking-[.16em] text-muted-foreground">
+                      {t.signal}
+                    </span>
+                    <span className="font-mono text-[10px] text-primary">
+                      LIVE
+                    </span>
+                  </div>
+                  <div className="mt-10 flex h-40 items-end gap-1.5">
+                    {[
+                      32, 48, 41, 62, 54, 76, 58, 82, 67, 91, 72, 86, 64, 96,
+                      79, 88, 72, 94, 84, 100, 76, 92,
+                    ].map((height, index) => (
+                      <span
+                        key={index}
+                        className="flex-1 rounded-t-sm bg-primary/70"
+                        style={{
+                          height: `${height}%`,
+                          opacity: 0.35 + index / 36,
+                        }}
+                      />
+                    ))}
+                  </div>
+                  <div className="mt-4 flex justify-between font-mono text-[9px] text-muted-foreground">
+                    <span>JAN</span>
+                    <span>MAR</span>
+                    <span>JUN</span>
+                    <span>SEP</span>
+                    <span>DEC</span>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-4">
+                  <div className="rounded-xl border border-primary/25 bg-primary-soft/65 p-5">
+                    <div className="flex items-center gap-3">
+                      <Image
+                        src="/8ity-orb.webp"
+                        alt=""
+                        width={38}
+                        height={38}
+                      />
+                      <div>
+                        <p className="text-xs font-semibold">Chief of Staff</p>
+                        <p className="mt-1 font-mono text-[9px] text-primary">
+                          ANALYSIS COMPLETE
+                        </p>
+                      </div>
+                    </div>
+                    <p className="mt-5 text-sm leading-6 text-muted-foreground">
+                      {t.alert}
+                    </p>
+                    <div className="mt-5 h-1 overflow-hidden rounded-full bg-border">
+                      <div className="h-full w-[78%] bg-primary" />
+                    </div>
+                  </div>
+                  <div className="grid flex-1 grid-cols-2 gap-3">
+                    {["Runway", "MRR", "Tasks", "Deals"].map((label, index) => (
+                      <div
+                        key={label}
+                        className="rounded-xl border border-border bg-background/45 p-4"
+                      >
+                        <p className="font-mono text-[9px] uppercase text-muted-foreground">
+                          {label}
+                        </p>
+                        <p className="mt-3 text-xl font-medium">
+                          {["18 mo", "+8.2%", "124", "31"][index]}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="grid border-x border-b border-border bg-surface/80 sm:grid-cols-3">
+          {[
+            ["1,000+", t.stats[0]],
+            ["50+", t.stats[1]],
+            ["80%", t.stats[2]],
+          ].map(([value, label]) => (
+            <div
+              key={label}
+              className="border-b border-border px-6 py-5 sm:border-b-0 sm:border-r last:border-0"
+            >
+              <p className="text-2xl font-medium text-primary">{value}</p>
+              <p className="mt-1 text-xs text-muted-foreground">{label}</p>
+            </div>
+          ))}
+        </div>
+      </FadeIn>
+    </section>
+  );
 }
 
-function Metric({ label, value, delta, bars }: { label: string; value: string; delta: string; bars: number[] }) { return <div className="rounded-xl border border-border bg-background/45 p-4"><p className="font-mono text-[9px] uppercase tracking-[.15em] text-muted-foreground">{label}</p><div className="mt-4 flex items-end justify-between gap-3"><div><p className="text-2xl font-medium">{value}</p><p className="mt-1 text-[10px] text-primary">{delta}</p></div><div className="flex h-10 items-end gap-1">{bars.map((height, index) => <span key={index} className="w-1 rounded-full bg-primary" style={{ height: `${height}%`, opacity: .35 + index / 10 }} />)}</div></div></div>; }
+function Metric({
+  label,
+  value,
+  delta,
+  bars,
+}: {
+  label: string;
+  value: string;
+  delta: string;
+  bars: number[];
+}) {
+  return (
+    <div className="rounded-xl border border-border bg-background/45 p-4">
+      <p className="font-mono text-[9px] uppercase tracking-[.15em] text-muted-foreground">
+        {label}
+      </p>
+      <div className="mt-4 flex items-end justify-between gap-3">
+        <div>
+          <p className="text-2xl font-medium">{value}</p>
+          <p className="mt-1 text-[10px] text-primary">{delta}</p>
+        </div>
+        <div className="flex h-10 items-end gap-1">
+          {bars.map((height, index) => (
+            <span
+              key={index}
+              className="w-1 rounded-full bg-primary"
+              style={{ height: `${height}%`, opacity: 0.35 + index / 10 }}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
