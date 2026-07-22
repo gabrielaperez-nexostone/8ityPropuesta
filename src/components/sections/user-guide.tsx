@@ -24,6 +24,31 @@ const copy = {
       "CRM adicional conectado a finanzas y proyectos",
       "Agentes con datos, permisos y herramientas",
     ],
+    differenceLabel: "Por qué es diferente",
+    differenceTitle:
+      "Más inteligencia y libertad, con menos complejidad y costo.",
+    differences: [
+      {
+        number: "01",
+        title: "IA en el centro",
+        body: "La IA no vive en un chat aislado. Trabaja con datos reales del ERP, memoria, permisos y herramientas para analizar y ejecutar acciones.",
+      },
+      {
+        number: "02",
+        title: "Gestiona lo que quieras",
+        body: "Activa los módulos que necesita tu empresa y conecta procesos, datos o sistemas propios sin forzar una operación rígida.",
+      },
+      {
+        number: "03",
+        title: "Fácil de entender",
+        body: "Una experiencia unificada reduce cambios de aplicación, información duplicada y curvas de aprendizaje entre equipos.",
+      },
+      {
+        number: "04",
+        title: "Menor costo operativo",
+        body: "8ity busca reemplazar la suma de múltiples suscripciones con un ERP modular, herramientas conectadas y créditos de IA en un solo ecosistema.",
+      },
+    ],
     howLabel: "Cómo funciona",
     howTitle: "Empieza conectando lo que ya usas.",
     howBody:
@@ -124,6 +149,12 @@ const copy = {
           "No. Puedes comenzar por un módulo o flujo y conectar servicios existentes como Google Workspace, Stripe, bancos y sistemas internos.",
       },
       {
+        value: "cost",
+        title: "¿Por qué puede costar menos?",
+        content:
+          "Porque concentra funciones que normalmente requieren varias suscripciones: ERP, proyectos, documentos, automatizaciones, CRM e IA. El ahorro real depende de las herramientas y el uso de cada empresa.",
+      },
+      {
         value: "data",
         title: "¿Cómo se controla el acceso a los datos?",
         content:
@@ -158,6 +189,31 @@ const copy = {
       "ERP modules that share information",
       "Additional CRM connected to finance and projects",
       "Agents with data, permissions and tools",
+    ],
+    differenceLabel: "Why it is different",
+    differenceTitle:
+      "More intelligence and freedom, with less complexity and cost.",
+    differences: [
+      {
+        number: "01",
+        title: "AI at the core",
+        body: "AI does not live in an isolated chat. It works with real ERP data, memory, permissions and tools to analyze and perform actions.",
+      },
+      {
+        number: "02",
+        title: "Manage what you need",
+        body: "Enable the modules your company needs and connect custom processes, data or systems without forcing a rigid operation.",
+      },
+      {
+        number: "03",
+        title: "Easy to understand",
+        body: "One unified experience reduces app switching, duplicate information and learning curves across teams.",
+      },
+      {
+        number: "04",
+        title: "Lower operating cost",
+        body: "8ity is designed to replace multiple subscriptions with a modular ERP, connected tools and AI credits in one ecosystem.",
+      },
     ],
     howLabel: "How it works",
     howTitle: "Start by connecting what you already use.",
@@ -257,6 +313,12 @@ const copy = {
           "No. You can begin with one module or workflow and connect existing services such as Google Workspace, Stripe, banks and internal systems.",
       },
       {
+        value: "cost",
+        title: "Why can it cost less?",
+        content:
+          "Because it combines functions that usually require several subscriptions: ERP, projects, documents, automations, CRM and AI. Actual savings depend on each company’s tools and usage.",
+      },
+      {
         value: "data",
         title: "How is data access controlled?",
         content:
@@ -293,6 +355,40 @@ export function UserGuide() {
         <div className="mt-14 grid gap-px bg-border lg:grid-cols-2">
           <Comparison title={t.before} items={t.beforeItems} negative />
           <Comparison title={t.after} items={t.afterItems} />
+        </div>
+      </section>
+      <section
+        id="diferenciadores"
+        className="my-24 overflow-hidden border border-primary/20 bg-[radial-gradient(circle_at_90%_10%,rgba(56,214,178,.16),transparent_34%),var(--surface)] p-6 sm:p-10"
+      >
+        <Reveal>
+          <p className="font-mono text-xs uppercase tracking-[.2em] text-primary">
+            {t.differenceLabel}
+          </p>
+          <h2 className="mt-5 max-w-5xl text-5xl font-medium leading-[.95] tracking-[-.055em] sm:text-7xl">
+            {t.differenceTitle}
+          </h2>
+        </Reveal>
+        <div className="mt-14 grid gap-px bg-border sm:grid-cols-2">
+          {t.differences.map((item) => (
+            <Reveal
+              key={item.number}
+              className="group min-h-72 bg-background/90 p-6 transition-colors hover:bg-primary-soft/30 sm:p-8"
+            >
+              <div className="flex items-center justify-between">
+                <span className="font-mono text-xs text-primary">
+                  {item.number}
+                </span>
+                <span className="size-2 rounded-full border border-primary transition-all group-hover:bg-primary group-hover:shadow-[0_0_18px_var(--primary)]" />
+              </div>
+              <h3 className="mt-20 text-3xl font-medium tracking-[-.03em]">
+                {item.title}
+              </h3>
+              <p className="mt-5 max-w-xl leading-7 text-muted-foreground">
+                {item.body}
+              </p>
+            </Reveal>
+          ))}
         </div>
       </section>
       <section id="como-funciona" className="py-24">

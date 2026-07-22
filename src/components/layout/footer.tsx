@@ -13,8 +13,8 @@ export function Footer() {
         </div>
         <p className="max-w-lg text-sm text-muted-foreground">
           {language === "es"
-            ? "Un ERP modular para gestionar toda tu empresa, con CRM, automatizaciones y agentes de IA como herramientas conectadas."
-            : "A modular ERP for managing your whole company, with CRM, automations and AI agents as connected tools."}
+            ? "Un ERP flexible y fácil de usar, con IA integrada y menor costo que operar con múltiples herramientas separadas."
+            : "A flexible, easy-to-use ERP with built-in AI and a lower cost than operating across multiple disconnected tools."}
         </p>
       </MainContainer>
     </footer>

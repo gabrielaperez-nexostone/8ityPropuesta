@@ -8,11 +8,11 @@ import { useLanguage } from "@/providers/language-provider";
 
 const copy = {
   es: {
-    eyebrow: "ERP inteligente para empresas modernas",
+    eyebrow: "ERP con inteligencia artificial integrada",
     titleA: "Toda tu empresa,",
     titleB: "gestionada desde un solo ERP.",
     description:
-      "8ity centraliza finanzas, operaciones, proyectos, personas y datos. El CRM es una herramienta adicional dentro de un ecosistema conectado con agentes de IA.",
+      "Gestiona lo que necesites desde un entorno simple y adaptable. La IA conecta el contexto, reduce trabajo manual y ayuda a operar con menos herramientas y menor costo.",
     primary: "Descubrir 8ity",
     secondary: "Explorar el ERP",
     activity: "Actividad en vivo",
@@ -24,11 +24,11 @@ const copy = {
     stats: ["Bancos conectables", "Integraciones", "Menos esfuerzo"],
   },
   en: {
-    eyebrow: "Intelligent ERP for modern companies",
+    eyebrow: "ERP with built-in artificial intelligence",
     titleA: "Your whole company,",
     titleB: "managed from one ERP.",
     description:
-      "8ity centralizes finance, operations, projects, people and data. CRM is an additional tool inside an ecosystem connected with AI agents.",
+      "Manage what you need from one simple, adaptable environment. AI connects context, reduces manual work and helps you operate with fewer tools at a lower cost.",
     primary: "Discover 8ity",
     secondary: "Explore the ERP",
     activity: "Live activity",

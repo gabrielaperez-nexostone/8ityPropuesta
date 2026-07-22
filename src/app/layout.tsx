@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 
 const title = "8ity — Intelligent ERP for modern companies";
 const description =
-  "A modular ERP that connects finance, operations, projects, people, CRM, automations and AI agents. Disponible en español e inglés.";
+  "An AI-first modular ERP that makes company management easier and helps replace multiple disconnected subscriptions with one adaptable ecosystem.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://8ity.org"),
