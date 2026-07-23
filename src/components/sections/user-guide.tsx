@@ -343,12 +343,12 @@ export function UserGuide() {
   const t = copy[language];
   return (
     <>
-      <section id="beneficios" className="py-24">
+      <section id="beneficios" className="py-16">
         <Reveal>
           <p className="font-mono text-xs uppercase tracking-[.2em] text-primary">
             {t.problemLabel}
           </p>
-          <h2 className="mt-5 max-w-5xl text-5xl font-medium leading-[.95] tracking-[-.055em] sm:text-7xl">
+          <h2 className="mt-4 max-w-4xl text-4xl font-medium leading-[1] tracking-[-.04em] sm:text-5xl">
             {t.problemTitle}
           </h2>
         </Reveal>
@@ -365,15 +365,15 @@ export function UserGuide() {
           <p className="font-mono text-xs uppercase tracking-[.2em] text-primary">
             {t.differenceLabel}
           </p>
-          <h2 className="mt-5 max-w-5xl text-5xl font-medium leading-[.95] tracking-[-.055em] sm:text-7xl">
+          <h2 className="mt-4 max-w-4xl text-4xl font-medium leading-[1] tracking-[-.04em] sm:text-5xl">
             {t.differenceTitle}
           </h2>
         </Reveal>
-        <div className="mt-14 grid gap-px bg-border sm:grid-cols-2">
+        <div className="mt-14 grid gap-4 sm:grid-cols-2">
           {t.differences.map((item) => (
             <Reveal
               key={item.number}
-              className="group min-h-72 bg-background/90 p-6 transition-colors hover:bg-primary-soft/30 sm:p-8"
+              className="glass-card group min-h-72 p-6 transition-colors hover:bg-primary-soft/30 sm:p-8"
             >
               <div className="flex items-center justify-between">
                 <span className="font-mono text-xs text-primary">
@@ -381,7 +381,7 @@ export function UserGuide() {
                 </span>
                 <span className="size-2 rounded-full border border-primary transition-all group-hover:bg-primary group-hover:shadow-[0_0_18px_var(--primary)]" />
               </div>
-              <h3 className="mt-20 text-3xl font-medium tracking-[-.03em]">
+              <h3 className="mt-12 text-2xl font-medium tracking-[-.025em]">
                 {item.title}
               </h3>
               <p className="mt-5 max-w-xl leading-7 text-muted-foreground">
@@ -391,14 +391,14 @@ export function UserGuide() {
           ))}
         </div>
       </section>
-      <section id="como-funciona" className="py-24">
+      <section id="como-funciona" className="py-16">
         <Reveal>
           <div className="grid gap-8 lg:grid-cols-[1.2fr_.8fr]">
             <div>
               <p className="font-mono text-xs uppercase tracking-[.2em] text-primary">
                 {t.howLabel}
               </p>
-              <h2 className="mt-5 text-5xl font-medium leading-[.95] tracking-[-.055em] sm:text-7xl">
+              <h2 className="mt-4 text-4xl font-medium leading-[1] tracking-[-.04em] sm:text-5xl">
                 {t.howTitle}
               </h2>
             </div>
@@ -407,13 +407,13 @@ export function UserGuide() {
             </p>
           </div>
         </Reveal>
-        <div className="mt-14 grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {t.steps.map((step) => (
-            <Reveal key={step.number} className="min-h-72 bg-background p-6">
+            <Reveal key={step.number} className="glass-card min-h-72 p-6">
               <span className="font-mono text-xs text-primary">
                 {step.number}
               </span>
-              <h3 className="mt-24 text-2xl font-medium">{step.title}</h3>
+              <h3 className="mt-14 text-xl font-medium">{step.title}</h3>
               <p className="mt-4 text-sm leading-6 text-muted-foreground">
                 {step.body}
               </p>
@@ -426,7 +426,7 @@ export function UserGuide() {
           <p className="font-mono text-xs uppercase tracking-[.2em] text-primary">
             {t.exampleLabel}
           </p>
-          <h2 className="mt-5 max-w-5xl text-5xl font-medium leading-[.95] tracking-[-.055em] sm:text-7xl">
+          <h2 className="mt-4 max-w-4xl text-4xl font-medium leading-[1] tracking-[-.04em] sm:text-5xl">
             {t.exampleTitle}
           </h2>
           <p className="mt-6 text-lg text-muted-foreground">{t.exampleIntro}</p>
@@ -435,7 +435,7 @@ export function UserGuide() {
           {t.exampleSteps.map((step, index) => (
             <div
               key={step}
-              className="relative border border-border bg-background p-5"
+              className="glass-card relative p-5"
             >
               <span className="font-mono text-[10px] text-primary">
                 0{index + 1}
@@ -450,20 +450,20 @@ export function UserGuide() {
           ))}
         </div>
       </section>
-      <section id="perfiles" className="py-24">
+      <section id="perfiles" className="py-16">
         <Reveal>
           <p className="font-mono text-xs uppercase tracking-[.2em] text-primary">
             {t.rolesLabel}
           </p>
-          <h2 className="mt-5 max-w-5xl text-5xl font-medium leading-[.95] tracking-[-.055em] sm:text-7xl">
+          <h2 className="mt-4 max-w-4xl text-4xl font-medium leading-[1] tracking-[-.04em] sm:text-5xl">
             {t.rolesTitle}
           </h2>
         </Reveal>
-        <div className="mt-14 grid gap-px bg-border md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {t.roles.map((role, index) => (
             <Reveal
               key={role.role}
-              className="group min-h-72 bg-background p-6 transition-colors hover:bg-surface"
+              className="glass-card group min-h-72 p-6 transition-colors hover:bg-surface/80"
             >
               <div className="flex justify-between">
                 <span className="font-mono text-[10px] text-primary">
@@ -484,13 +484,13 @@ export function UserGuide() {
       </section>
       <section
         id="preguntas"
-        className="grid gap-12 py-24 lg:grid-cols-[.8fr_1.2fr]"
+        className="grid gap-10 py-16 lg:grid-cols-[.8fr_1.2fr]"
       >
         <Reveal>
           <p className="font-mono text-xs uppercase tracking-[.2em] text-primary">
             {t.faqLabel}
           </p>
-          <h2 className="mt-5 text-5xl font-medium leading-[.95] tracking-[-.055em] sm:text-7xl">
+          <h2 className="mt-4 text-4xl font-medium leading-[1] tracking-[-.04em] sm:text-5xl">
             {t.faqTitle}
           </h2>
         </Reveal>
@@ -503,7 +503,7 @@ export function UserGuide() {
           <p className="font-mono text-xs uppercase tracking-[.2em] text-primary">
             {t.ctaLabel}
           </p>
-          <h2 className="mt-5 max-w-5xl text-5xl font-medium leading-[.95] tracking-[-.055em] sm:text-7xl">
+          <h2 className="mt-4 max-w-4xl text-4xl font-medium leading-[1] tracking-[-.04em] sm:text-5xl">
             {t.ctaTitle}
           </h2>
           <Button asChild className="mt-10">
@@ -526,7 +526,7 @@ function Comparison({
 }) {
   return (
     <div
-      className={`p-6 sm:p-10 ${negative ? "bg-[#0a0d10]" : "bg-primary-soft/40"}`}
+      className={`p-6 sm:p-10 ${negative ? "bg-surface" : "bg-primary-soft/40"}`}
     >
       <p className="font-mono text-xs uppercase tracking-[.16em] text-muted-foreground">
         {title}

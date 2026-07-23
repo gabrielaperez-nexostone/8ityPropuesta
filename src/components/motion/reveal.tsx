@@ -2,7 +2,21 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import { cn } from "@/lib/utils";
-export function Reveal({ children, className }: { children: React.ReactNode; className?: string }) { return <motion.div initial={{ opacity: 0, y: 34, filter: "blur(7px)" }} whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }} viewport={{ once: true, amount: .16 }} transition={{ duration: .75, ease: [0.22, 1, 0.36, 1] }} className={cn(className)}>{children}</motion.div>; }
+export function Reveal({ children, className }: { children: React.ReactNode; className?: string }) {
+  return (
+    <div className={cn("overflow-clip", className)}>
+      <motion.div
+        initial={{ opacity: 0, y: "18%", rotate: .35 }}
+        whileInView={{ opacity: 1, y: "0%", rotate: 0 }}
+        viewport={{ once: true, amount: .16, margin: "0px 0px -8% 0px" }}
+        transition={{ duration: 1.05, ease: [0.16, 1, 0.3, 1] }}
+        style={{ transformOrigin: "left bottom" }}
+      >
+        {children}
+      </motion.div>
+    </div>
+  );
+}
 
 export function ScrollLift({ children, className }: { children: React.ReactNode; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);

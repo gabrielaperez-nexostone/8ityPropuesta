@@ -7,16 +7,20 @@ import { useLanguage, type Language } from "@/providers/language-provider";
 
 const nav = {
   es: [
-    { label: "ERP", href: "#plataforma" },
+    { label: "Integraciones", href: "https://8ity.org/#integraciones" },
+    { label: "Módulos", href: "https://8ity.org/#modulos" },
+    { label: "AI Agents", href: "https://8ity.org/#ai" },
     { label: "Cómo funciona", href: "#como-funciona" },
     { label: "Para tu equipo", href: "#perfiles" },
-    { label: "Preguntas", href: "#preguntas" },
+    { label: "Precios", href: "https://8ity.org/pricing" },
   ],
   en: [
-    { label: "ERP", href: "#plataforma" },
+    { label: "Integrations", href: "https://8ity.org/#integraciones" },
+    { label: "Modules", href: "https://8ity.org/#modulos" },
+    { label: "AI Agents", href: "https://8ity.org/#ai" },
     { label: "How it works", href: "#como-funciona" },
     { label: "For your team", href: "#perfiles" },
-    { label: "Questions", href: "#preguntas" },
+    { label: "Pricing", href: "https://8ity.org/pricing" },
   ],
 } as const;
 
@@ -35,7 +39,7 @@ export function Header() {
           <span>8ity</span>
         </Link>
         <nav
-          className="hidden items-center gap-7 md:flex"
+          className="hidden items-center gap-5 xl:flex"
           aria-label={
             language === "es" ? "Navegación principal" : "Main navigation"
           }
@@ -52,7 +56,7 @@ export function Header() {
         </nav>
         <div className="flex items-center gap-2">
           <LanguageSwitch language={language} setLanguage={setLanguage} />
-          <div className="hidden lg:block">
+          <div className="hidden xl:block">
             <Button asChild size="sm">
               <Link href="#plataforma">
                 {language === "es" ? "Explorar" : "Explore"}{" "}
@@ -60,7 +64,7 @@ export function Header() {
               </Link>
             </Button>
           </div>
-          <div className="md:hidden">
+          <div className="xl:hidden">
             <DropdownMenu
               items={items.map(({ label, href }) => ({ label, href }))}
             />
