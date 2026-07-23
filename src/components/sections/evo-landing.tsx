@@ -647,7 +647,7 @@ function StackCard({
       <div className="w-full">
         <motion.article
           style={{ borderRadius: radius, scale }}
-          className="isolate mx-auto mb-5 min-h-[32rem] w-full max-w-[1136px] origin-top border border-accent/12 bg-[linear-gradient(180deg,#091612,#040a09)] p-5 shadow-[0_-24px_70px_rgba(0,0,0,.65)] will-change-transform sm:min-h-[38rem] sm:p-8 lg:min-h-[min(46rem,78svh)] lg:p-10"
+          className="isolate mx-auto mb-5 min-h-[32rem] w-full max-w-[1136px] origin-top border border-white/10 bg-[linear-gradient(180deg,#0d131d,#070b12)] p-5 shadow-[0_-24px_70px_rgba(0,0,0,.65)] will-change-transform sm:min-h-[38rem] sm:p-8 lg:min-h-[min(46rem,78svh)] lg:p-10"
         >
           <div className="mx-auto max-w-[1104px]">
             <header className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-6">
