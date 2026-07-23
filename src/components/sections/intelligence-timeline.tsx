@@ -124,8 +124,12 @@ export function IntelligenceTimeline() {
   }, [draw, syncActiveStep]);
 
   return (
-    <section ref={sectionRef} className="relative my-16 overflow-hidden border border-border bg-[#030810] px-5 py-16 text-white sm:px-8 lg:px-10">
-      <div aria-hidden className="pointer-events-none absolute -top-32 right-[-8%] h-80 w-80 rounded-full bg-primary/[.06] blur-3xl" />
+    <section
+      id="como-funciona"
+      ref={sectionRef}
+      className="relative my-16 scroll-mt-28 overflow-hidden rounded-[2rem] border border-border bg-[#030810] px-5 py-16 text-white sm:px-8 lg:px-10"
+    >
+      <div aria-hidden className="pointer-events-none absolute -top-32 right-[-8%] h-80 w-80 rounded-full bg-accent/[.06] blur-3xl" />
 
       <div className="grid gap-5 lg:grid-cols-[1fr_.58fr] lg:items-end">
         <div>
@@ -134,14 +138,14 @@ export function IntelligenceTimeline() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: .8 }}
             transition={{ duration: .7, ease: EASE }}
-            className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-[.18em] text-primary"
+            className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-[.18em] text-accent"
           >
             <motion.span
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true, amount: .8 }}
               transition={{ duration: .9, ease: EASE, delay: .15 }}
-              className="h-px w-8 origin-left bg-primary/60"
+              className="h-px w-8 origin-left bg-accent/60"
               aria-hidden
             />
             {t.eyebrow}
@@ -193,13 +197,13 @@ export function IntelligenceTimeline() {
             ref={(el) => { stepRefs.current[index] = el; }}
             data-active="false"
             variants={{ hidden: { opacity: 0, y: 22 }, visible: { opacity: 1, y: 0, transition: { duration: .8, ease: EASE } } }}
-            className="group relative border-b border-white/10 p-5 transition-colors duration-500 last:border-b-0 hover:bg-white/[.03] data-[active=true]:bg-primary/[.05] sm:border-r lg:border-b-0 lg:last:border-r-0"
+            className="group relative border-b border-white/10 p-5 transition-colors duration-500 last:border-b-0 hover:bg-white/[.03] data-[active=true]:bg-accent/[.05] sm:border-r lg:border-b-0 lg:last:border-r-0"
           >
             <span
               aria-hidden
-              className="absolute inset-x-0 top-0 h-[2px] origin-left scale-x-0 bg-primary/80 transition-transform duration-700 ease-out group-data-[active=true]:scale-x-100"
+              className="absolute inset-x-0 top-0 h-[2px] origin-left scale-x-0 bg-accent/80 transition-transform duration-700 ease-out group-data-[active=true]:scale-x-100"
             />
-            <p className="font-mono text-[9px] text-primary/60 transition-colors duration-500 group-data-[active=true]:text-primary">0{index + 1}</p>
+            <p className="font-mono text-[9px] text-accent/60 transition-colors duration-500 group-data-[active=true]:text-accent">0{index + 1}</p>
             <h3 className="mt-3 text-sm font-medium text-white/80 transition-colors duration-500 group-hover:text-white group-data-[active=true]:text-white">{title}</h3>
             <p className="mt-2 text-xs leading-5 text-white/50 transition-colors duration-500 group-data-[active=true]:text-white/65">{body}</p>
           </motion.div>
@@ -239,7 +243,7 @@ function renderFlow(ctx: CanvasRenderingContext2D, width: number, height: number
     const boost = Math.max(0, 1 - dist / x(70));
     const base = major ? .4 : .14;
     ctx.strokeStyle = major
-      ? `rgba(52,211,153,${base + boost * .55})`
+      ? `rgba(89,187,149,${base + boost * .55})`
       : `rgba(255,255,255,${base + boost * .3})`;
     const stretch = 1 + boost * .5;
     ctx.beginPath();
@@ -250,7 +254,7 @@ function renderFlow(ctx: CanvasRenderingContext2D, width: number, height: number
 
   // Progress line with comet gradient
   const grad = ctx.createLinearGradient(Math.max(0, headX - x(190)), 0, headX, 0);
-  grad.addColorStop(0, "rgba(52,211,153,0)"); grad.addColorStop(.72, "rgba(52,211,153,.8)"); grad.addColorStop(1, "rgba(110,231,183,1)");
+  grad.addColorStop(0, "rgba(89,187,149,0)"); grad.addColorStop(.72, "rgba(89,187,149,.8)"); grad.addColorStop(1, "rgba(126,207,174,1)");
   ctx.strokeStyle = grad; ctx.lineWidth = 2;
   ctx.beginPath(); ctx.moveTo(0, baselineY); ctx.lineTo(headX, baselineY); ctx.stroke();
 
@@ -260,7 +264,7 @@ function renderFlow(ctx: CanvasRenderingContext2D, width: number, height: number
       const tt = (time * .1 + i / 4) % 1;
       const px = tt * headX;
       const a = Math.sin(Math.PI * tt) * .55;
-      ctx.fillStyle = `rgba(110,231,183,${a})`;
+      ctx.fillStyle = `rgba(126,207,174,${a})`;
       ctx.beginPath(); ctx.arc(px, baselineY, 1.6 * sx + Math.sin(Math.PI * tt) * sx, 0, Math.PI * 2); ctx.fill();
     }
   }
@@ -268,7 +272,7 @@ function renderFlow(ctx: CanvasRenderingContext2D, width: number, height: number
   // Breathing head glow
   const breath = reduced ? 1 : 1 + .16 * Math.sin(time * 2.4);
   const glow = ctx.createRadialGradient(headX, baselineY, 0, headX, baselineY, x(22) * breath);
-  glow.addColorStop(0, "rgba(110,231,183,.8)"); glow.addColorStop(1, "rgba(52,211,153,0)");
+  glow.addColorStop(0, "rgba(126,207,174,.8)"); glow.addColorStop(1, "rgba(89,187,149,0)");
   ctx.fillStyle = glow; ctx.beginPath(); ctx.arc(headX, baselineY, x(22) * breath, 0, Math.PI * 2); ctx.fill();
   ctx.fillStyle = "rgba(240,255,250,.95)";
   ctx.beginPath(); ctx.arc(headX, baselineY, 2.4 * sx, 0, Math.PI * 2); ctx.fill();
@@ -276,9 +280,9 @@ function renderFlow(ctx: CanvasRenderingContext2D, width: number, height: number
   pill(ctx, x(12), baselineY - y(18), core, true, 1, sx);
 
   const specs = [
-    { start: .12, cx: 270, top: 125, direction: -1 },
-    { start: .39, cx: 555, top: 390, direction: 1 },
-    { start: .64, cx: 820, top: 125, direction: -1 },
+    { start: .12, cx: 270, top: 125, direction: -1, time: "18:24:00", glyph: "▲" },
+    { start: .39, cx: 555, top: 390, direction: 1, time: "19:08:12", glyph: "⎇" },
+    { start: .64, cx: 820, top: 125, direction: -1, time: "20:32:04", glyph: "◉" },
   ] as const;
 
   specs.forEach((spec, index) => {
@@ -307,9 +311,11 @@ function renderFlow(ctx: CanvasRenderingContext2D, width: number, height: number
     ctx.stroke(); ctx.setLineDash([]); ctx.lineDashOffset = 0;
 
     node(ctx, bx, baselineY, local, sx, reduced ? 0 : time + index * .8);
+    label(ctx, bx, baselineY + y(34) * -spec.direction, spec.time, Math.min(local * 1.5, 1) * .8, sx);
+    if (local > .3) iconNode(ctx, bx, baselineY + (approachY - baselineY) * .5, spec.glyph, fade(local, .3, .5), sx);
     if (local > .42) pill(ctx, curveEndX, targetY, branch.pill, index === 2, fade(local, .42, .68), sx);
     if (local > .58) {
-      const lineStart = curveEndX + x(index === 1 ? 145 : 155);
+      const lineStart = curveEndX + x(index === 0 ? 225 : index === 1 ? 215 : 155);
       const lineY = targetY + y(18);
       const reach = fade(local, .58, 1);
       const lineEnd = Math.min(width - x(18), lineStart + x(260) * easeOut(reach));
@@ -359,12 +365,28 @@ function node(ctx: CanvasRenderingContext2D, px: number, py: number, alpha: numb
   ctx.save(); ctx.globalAlpha = alpha;
   if (time > 0) {
     const ring = (time * .9) % 1;
-    ctx.strokeStyle = `rgba(52,211,153,${(1 - ring) * .4 * alpha})`;
+    ctx.strokeStyle = `rgba(89,187,149,${(1 - ring) * .4 * alpha})`;
     ctx.lineWidth = 1 * scale;
     ctx.beginPath(); ctx.arc(px, py, (5 + ring * 14) * scale, 0, Math.PI * 2); ctx.stroke();
   }
-  ctx.fillStyle = "#030810"; ctx.strokeStyle = "#34d399"; ctx.lineWidth = 1.5 * scale;
+  ctx.fillStyle = "#030810"; ctx.strokeStyle = "#59bb95"; ctx.lineWidth = 1.5 * scale;
   ctx.beginPath(); ctx.arc(px, py, 5 * scale, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+  ctx.restore();
+}
+
+function iconNode(ctx: CanvasRenderingContext2D, px: number, py: number, glyph: string, alpha: number, scale: number) {
+  if (alpha <= 0) return;
+  ctx.save();
+  ctx.globalAlpha = alpha;
+  ctx.fillStyle = "#0c0f14";
+  ctx.strokeStyle = "rgba(255,255,255,.35)";
+  ctx.lineWidth = 1.2 * scale;
+  ctx.beginPath(); ctx.arc(px, py, 12 * scale, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = "#e8e8e8";
+  ctx.font = `${10 * scale}px ui-monospace, SFMono-Regular, Menlo, monospace`;
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillText(glyph, px, py + .5);
   ctx.restore();
 }
 
@@ -373,7 +395,7 @@ function check(ctx: CanvasRenderingContext2D, px: number, py: number, alpha: num
   ctx.save();
   ctx.globalAlpha = Math.min(1, alpha * 1.5);
   const r = 8 * scale * (.7 + .3 * easeOutBack(alpha));
-  ctx.fillStyle = "#34d399";
+  ctx.fillStyle = "#59bb95";
   ctx.beginPath(); ctx.arc(px, py, r, 0, Math.PI * 2); ctx.fill();
   ctx.strokeStyle = "#030810"; ctx.lineWidth = 1.4 * scale;
   const k = r / (8 * scale);

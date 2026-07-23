@@ -18,6 +18,14 @@ export function Reveal({ children, className }: { children: React.ReactNode; cla
   );
 }
 
+export function ScrollScale({ children, className }: { children: React.ReactNode; className?: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "start center"] });
+  const scale = useTransform(scrollYProgress, [0, 1], [.86, 1]);
+  const opacity = useTransform(scrollYProgress, [0, 1], [.55, 1]);
+  return <motion.div ref={ref} style={{ scale, opacity }} className={cn("origin-center will-change-transform", className)}>{children}</motion.div>;
+}
+
 export function ScrollLift({ children, className }: { children: React.ReactNode; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });

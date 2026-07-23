@@ -1,12 +1,13 @@
 "use client";
 import Image from "next/image";
+import { useRef } from "react";
 import { Carousel } from "@/components/slider/carousel";
 import { Reveal } from "@/components/motion/reveal";
 import { useLanguage } from "@/providers/language-provider";
 import { OperationsExplorer } from "@/components/sections/operations-explorer";
-import { ScrollLift } from "@/components/motion/reveal";
+import { ScrollScale } from "@/components/motion/reveal";
 import { IntelligenceTimeline } from "@/components/sections/intelligence-timeline";
-import { motion } from "motion/react";
+import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
 
 const copy = {
   es: {
@@ -209,10 +210,10 @@ export function PlatformOverview() {
               {t.modules.map((module, index) => (
                 <article
                   key={module.title}
-                  className="glass-card group min-h-64 p-6 transition-colors hover:bg-surface/80"
+                  className="glass-card group min-h-64 p-6 transition-colors hover:border-primary/30 hover:bg-white/[.06]"
                 >
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-[10px] text-primary">
+                    <span className="inline-flex h-8 items-center rounded-lg bg-primary/10 px-2.5 font-mono text-[10px] tracking-[.08em] text-primary-hero">
                       {module.code}
                     </span>
                     <span className="font-mono text-[9px] text-muted-foreground">
@@ -244,9 +245,9 @@ export function PlatformOverview() {
                   {t.agentsBody}
                 </p>
               </div>
-              <ScrollLift className="mt-12">
+              <ScrollScale className="mt-12">
                 <AgentSystem language={language} />
-              </ScrollLift>
+              </ScrollScale>
             </div>
           </Reveal>
         </section>
@@ -254,16 +255,16 @@ export function PlatformOverview() {
         <OperationsExplorer />
         <section
           id="story-3"
-          className="my-16 bg-[#e8f5f2] px-5 py-16 text-[#101828] sm:px-10"
+          className="my-16 overflow-hidden rounded-[2rem] border border-border bg-white/[.02] px-5 py-16 sm:px-10"
         >
           <Reveal>
-            <p className="font-mono text-xs uppercase tracking-[.2em] text-[#0b5d40]">
+            <p className="font-mono text-xs uppercase tracking-[.2em] text-primary">
               {t.flowLabel}
             </p>
             <h2 className="text-balance mt-4 max-w-4xl text-4xl font-medium leading-[1] tracking-[-.04em] sm:text-5xl">
               {t.flowTitle}
             </h2>
-            <p className="mt-7 max-w-2xl text-lg leading-8 text-[#4f6380]">
+            <p className="mt-7 max-w-2xl text-lg leading-8 text-muted-foreground">
               {t.flowBody}
             </p>
             <FlowSystem
@@ -301,57 +302,76 @@ function AgentSystem({ language }: { language: "es" | "en" }) {
     ? ["Finanzas", "Proyectos", "Documentos", "Tareas", "Calendario", "CRM"]
     : ["Finance", "Projects", "Documents", "Tasks", "Calendar", "CRM"];
   return (
-    <div className="relative min-h-[35rem] overflow-hidden rounded-[2.5rem] bg-[#071714] sm:min-h-[44rem]">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_54%,rgba(52,211,153,.18),transparent_25%),radial-gradient(circle_at_center,rgba(5,150,105,.1),transparent_68%)]" />
+    <div className="relative overflow-hidden rounded-[2rem] border border-primary/15 bg-[#071714] px-4 py-14 sm:py-20">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(52,211,153,.16),transparent_32%),radial-gradient(circle_at_center,rgba(5,150,105,.1),transparent_68%)]" />
       <div className="absolute inset-0 opacity-[.14] [background-image:linear-gradient(rgba(110,231,183,.24)_1px,transparent_1px),linear-gradient(90deg,rgba(110,231,183,.24)_1px,transparent_1px)] [background-size:72px_72px] [mask-image:radial-gradient(circle_at_center,black,transparent_78%)]" />
 
-      <div className="absolute inset-5 hidden opacity-35 sm:block">
+      <div className="absolute inset-5 hidden lg:block">
         {modules.map((module, index) => {
-          const positions = ["left-[3%] top-[9%]", "left-[7%] top-[44%]", "left-[16%] bottom-[5%]", "right-[5%] top-[10%]", "right-[8%] top-[48%]", "right-[16%] bottom-[5%]"];
+          const positions = ["left-[2%] top-[7%]", "left-[1%] top-[42%]", "left-[6%] bottom-[6%]", "right-[2%] top-[9%]", "right-[1%] top-[46%]", "right-[6%] bottom-[7%]"];
           return (
-            <div key={module} className={`absolute h-36 w-56 border border-primary/35 bg-[#091d19]/70 p-4 ${positions[index]}`}>
-              <div className="flex items-center justify-between border-b border-primary/20 pb-3 font-mono text-[9px] uppercase tracking-[.12em] text-primary">
-                <span>{module}</span><span>0{index + 1}</span>
+            <motion.div
+              key={module}
+              animate={{ y: [0, -9, 0] }}
+              transition={{ duration: 7 + index * 1.1, repeat: Infinity, ease: "easeInOut", delay: index * .7 }}
+              className={`absolute w-60 rounded-xl border border-primary/30 bg-[#08201b]/85 p-4 shadow-[0_18px_60px_rgba(0,0,0,.35)] ${positions[index]}`}
+            >
+              <div className="flex items-center justify-between border-b border-primary/20 pb-3">
+                <span className="flex items-center gap-1.5" aria-hidden>
+                  <span className="size-2 rounded-full bg-white/15" /><span className="size-2 rounded-full bg-white/15" /><span className="size-2 rounded-full bg-primary/50" />
+                </span>
+                <span className="font-mono text-[9px] uppercase tracking-[.12em] text-primary">{module}</span>
+                <span className="font-mono text-[9px] text-white/35">0{index + 1}</span>
               </div>
-              <div className="mt-5 space-y-3">
-                <div className="h-px w-full bg-primary/25" /><div className="h-px w-3/4 bg-primary/20" /><div className="h-px w-1/2 bg-primary/15" />
+              <div className="mt-4 space-y-2.5">
+                <div className="h-1 w-full rounded-full bg-primary/20" /><div className="h-1 w-3/4 rounded-full bg-primary/15" /><div className="h-1 w-1/2 rounded-full bg-primary/10" />
               </div>
-            </div>
+              <p className="mt-4 inline-flex items-center gap-2 rounded-full bg-primary/10 px-2.5 py-1 font-mono text-[8px] uppercase tracking-[.12em] text-primary-hero">
+                <span className="size-1 rounded-full bg-primary" aria-hidden />sync
+              </p>
+            </motion.div>
           );
         })}
       </div>
 
-      <div className="absolute left-1/2 top-[13%] z-20 w-[min(86%,25rem)] -translate-x-1/2 border border-primary/55 bg-[#071714]/90 p-4 text-sm sm:top-[8%]">
-        <p className="font-mono text-[9px] uppercase tracking-[.14em] text-primary">{language === "es" ? "Solicitud" : "Request"}</p>
-        <p className="mt-2 text-white/75">{language === "es" ? "Resume el cierre del mes y dime qué necesita atención." : "Summarize month-end and tell me what needs attention."}</p>
-      </div>
+      <div className="relative z-20 mx-auto w-[min(100%,46rem)] rounded-2xl border border-primary/50 bg-[#061410]/95 shadow-[0_0_120px_rgba(52,211,153,.22)]">
+        <div className="flex items-center justify-between border-b border-primary/20 px-5 py-3">
+          <span className="flex items-center gap-2" aria-hidden>
+            <span className="size-2.5 rounded-full bg-white/15" /><span className="size-2.5 rounded-full bg-white/15" /><span className="size-2.5 rounded-full bg-primary/50" />
+          </span>
+          <span className="font-mono text-[9px] uppercase tracking-[.14em] text-primary">8ity AI · {language === "es" ? "Agente operativo" : "Operations agent"}</span>
+          <span className="rounded-full bg-primary/10 px-2.5 py-1 font-mono text-[8px] uppercase tracking-[.12em] text-primary-hero">live</span>
+        </div>
 
-      <div className="absolute left-1/2 top-1/2 z-20 h-[25rem] w-[15.5rem] -translate-x-1/2 -translate-y-[43%] rounded-[3.2rem] border border-primary/70 bg-[#061410]/95 shadow-[0_0_100px_rgba(52,211,153,.22)] sm:h-[29rem] sm:w-[18rem]">
-        <div className="mx-auto mt-5 h-5 w-16 rounded-full border border-white/15" />
-        <div className="flex h-[calc(100%-3rem)] flex-col items-center justify-center px-6 text-center">
-          <Image src="/8ity-orb.webp" alt="" width={76} height={76} className="drop-shadow-[0_0_24px_rgba(52,211,153,.42)]" />
+        <div className="border-b border-primary/15 px-6 py-5">
+          <p className="font-mono text-[9px] uppercase tracking-[.14em] text-primary">{language === "es" ? "Solicitud" : "Request"}</p>
+          <p className="mt-2 text-sm text-white/75">{language === "es" ? "Resume el cierre del mes y dime qué necesita atención." : "Summarize month-end and tell me what needs attention."}</p>
+        </div>
+
+        <div className="flex flex-col items-center px-6 py-10 text-center">
+          <Image src="/8ity-orb.webp" alt="" width={72} height={72} className="drop-shadow-[0_0_24px_rgba(52,211,153,.42)]" />
           <p className="mt-4 text-xl font-medium">8ity AI</p>
           <p className="mt-1 font-mono text-[9px] uppercase tracking-[.14em] text-primary">{language === "es" ? "Agente operativo" : "Operations agent"}</p>
-          <div className="mt-12 flex h-10 items-center justify-center gap-1" aria-hidden="true">
+          <div className="mt-8 flex h-10 items-center justify-center gap-1" aria-hidden="true">
             {[.45,.8,.58,1,.64,.9,.5,.76,.42,.86,.56,.72,.48,.94,.62,.78].map((height, index) => (
               <motion.span key={index} className="w-1 rounded-full bg-primary" animate={{ scaleY: [height, 1.15, .35, height] }} transition={{ duration: 2.4 + index * .05, repeat: Infinity, ease: "easeInOut", delay: index * .07 }} style={{ height: 28, transformOrigin: "center" }} />
             ))}
           </div>
-          <div className="mt-12 flex gap-4">
-            {["●", "•••", "↗"].map((item) => <span key={item} className="grid size-10 place-items-center rounded-full bg-white/[.06] text-xs text-white/45">{item}</span>)}
+        </div>
+
+        <div className="grid border-t border-primary/15 text-left sm:grid-cols-2">
+          <div className="border-b border-primary/15 p-5 text-xs sm:border-b-0 sm:border-r">
+            <p className="text-primary">{language === "es" ? "Finanzas" : "Finance"}</p>
+            <p className="mt-2 text-white/60">{language === "es" ? "3 movimientos requieren revisión" : "3 transactions need review"}</p>
+          </div>
+          <div className="p-5 text-xs">
+            <p className="text-primary">{language === "es" ? "Acción completada" : "Action completed"}</p>
+            <p className="mt-2 text-white/60">{language === "es" ? "Reporte compartido con dirección" : "Report shared with leadership"}</p>
           </div>
         </div>
       </div>
 
-      <div className="absolute bottom-[7%] left-[5%] z-20 hidden w-64 border border-primary/45 bg-[#071714]/90 p-4 text-xs sm:block">
-        <p className="text-primary">{language === "es" ? "Finanzas" : "Finance"}</p>
-        <p className="mt-2 text-white/60">{language === "es" ? "3 movimientos requieren revisión" : "3 transactions need review"}</p>
-      </div>
-      <div className="absolute bottom-[8%] right-[5%] z-20 hidden w-64 border border-primary/45 bg-[#071714]/90 p-4 text-xs sm:block">
-        <p className="text-primary">{language === "es" ? "Acción completada" : "Action completed"}</p>
-        <p className="mt-2 text-white/60">{language === "es" ? "Reporte compartido con dirección" : "Report shared with leadership"}</p>
-      </div>
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,rgba(7,23,20,.18)_55%,#071714_96%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_30%,rgba(7,23,20,.14)_60%,#071714_98%)]" />
     </div>
   );
 }
@@ -363,15 +383,15 @@ function FlowSystem({ labels }: { labels: readonly string[] }) {
         {labels.map((label, index) => (
           <div key={label} className="relative">
             <div
-              className={`min-h-40 border border-[#b8cbc5] p-5 ${index === 0 ? "bg-[#101828] text-white" : "bg-white/50"}`}
+              className={`min-h-40 rounded-2xl border p-5 transition-colors ${index === 0 ? "border-white bg-white text-[#0b0f14]" : "border-border bg-white/[.04] hover:border-primary/30"}`}
             >
-              <span className="font-mono text-[10px] text-[#15927f]">
+              <span className={`font-mono text-[10px] ${index === 0 ? "text-primary-deep" : "text-primary"}`}>
                 0{index + 1}
               </span>
               <p className="mt-16 text-sm font-medium">{label}</p>
             </div>
             {index < labels.length - 1 && (
-              <div className="absolute -right-3 top-1/2 z-10 grid size-6 -translate-y-1/2 place-items-center rounded-full bg-[#15927f] text-xs text-white">
+              <div className="absolute -right-3 top-1/2 z-10 grid size-6 -translate-y-1/2 place-items-center rounded-full bg-primary text-xs text-primary-foreground">
                 →
               </div>
             )}
@@ -383,35 +403,68 @@ function FlowSystem({ labels }: { labels: readonly string[] }) {
 }
 
 function SecuritySystem({ labels }: { labels: readonly string[] }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const px = useMotionValue(0);
+  const py = useMotionValue(0);
+  const rotateY = useSpring(useTransform(px, [-1, 1], [-30, -14]), { stiffness: 60, damping: 16 });
+  const rotateX = useSpring(useTransform(py, [-1, 1], [20, 6]), { stiffness: 60, damping: 16 });
+
+  const handleMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    const rect = ref.current?.getBoundingClientRect();
+    if (!rect) return;
+    px.set(((event.clientX - rect.left) / rect.width) * 2 - 1);
+    py.set(((event.clientY - rect.top) / rect.height) * 2 - 1);
+  };
+
   return (
-    <div className="glass-card relative grid min-h-[34rem] place-items-center overflow-hidden">
-      <div className="security-grid absolute inset-0 opacity-50" />
-      <div className="relative grid size-44 place-items-center rounded-full border border-primary/50 bg-background shadow-[0_0_100px_rgba(56,214,178,.18)]">
-        <div className="text-center">
-          <Image
-            src="/8ity-orb.webp"
-            alt=""
-            width={58}
-            height={58}
-            className="mx-auto"
-          />
-          <p className="mt-3 font-mono text-[9px] text-primary">8ITY VAULT</p>
-        </div>
-      </div>
-      {labels.map((label, index) => (
-        <div
-          key={label}
-          className="absolute border border-border bg-background/90 px-4 py-3 text-xs"
-          style={{
-            left: index % 2 ? "auto" : "8%",
-            right: index % 2 ? "8%" : "auto",
-            top: `${15 + index * 21}%`,
-          }}
+    <div
+      ref={ref}
+      onMouseMove={handleMove}
+      onMouseLeave={() => { px.set(0); py.set(0); }}
+      className="relative min-h-[34rem] overflow-hidden rounded-[1.5rem] border border-border bg-[#0a0f16]"
+    >
+      <div className="security-grid absolute inset-0 opacity-40" />
+
+      <div className="absolute inset-0 grid place-items-center [perspective:1400px]">
+        <motion.div
+          style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+          className="relative h-[17rem] w-[19rem] sm:h-[19rem] sm:w-[24rem]"
         >
-          <span className="mr-2 text-primary">●</span>
-          {label}
-        </div>
-      ))}
+          {labels.map((label, i) => (
+            <motion.div
+              key={label}
+              style={{ z: -i * 80, x: i * 20, transformStyle: "preserve-3d" }}
+              animate={{ y: [-i * 12, -i * 12 - 8, -i * 12] }}
+              transition={{ duration: 6 + i * 1.2, repeat: Infinity, ease: "easeInOut", delay: i * .55 }}
+              className={`absolute inset-0 rounded-2xl border ${i === 0 ? "border-primary/60 bg-[#0a1a15]/95 shadow-[0_30px_90px_rgba(0,0,0,.5)]" : "border-white/20 bg-white/[.015]"}`}
+            >
+              <span className={`absolute -top-3 left-5 rounded-full border px-3 py-1 font-mono text-[8px] uppercase tracking-[.14em] ${i === 0 ? "border-primary/50 bg-[#0a1a15] text-primary" : "border-white/20 bg-[#0a0f16] text-white/50"}`}>
+                {label}
+              </span>
+              {i === 0 ? (
+                <div className="flex h-full flex-col items-center justify-center text-center">
+                  <Image src="/8ity-orb.webp" alt="" width={54} height={54} />
+                  <p className="mt-3 font-mono text-[9px] tracking-[.16em] text-primary">8ITY VAULT</p>
+                  <div className="mt-5 w-40 space-y-2" aria-hidden>
+                    <div className="h-1 rounded-full bg-primary/30" />
+                    <div className="h-1 w-3/4 rounded-full bg-white/15" />
+                    <div className="h-1 w-1/2 rounded-full bg-white/10" />
+                  </div>
+                </div>
+              ) : (
+                <div className="absolute inset-x-6 top-1/3 space-y-4 opacity-60" aria-hidden>
+                  <div className="border-t border-dashed border-white/25" />
+                  <div className="w-2/3 border-t border-dashed border-white/15" />
+                </div>
+              )}
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+
+      <p className="absolute bottom-5 left-6 font-mono text-[9px] uppercase tracking-[.16em] text-white/35">
+        {labels.length} layers · zero-trust
+      </p>
     </div>
   );
 }

@@ -1,7 +1,8 @@
 "use client";
-import Link from "next/link";
+import { useState } from "react";
 import { Reveal } from "@/components/motion/reveal";
 import { Accordion } from "@/components/ui/accordion";
+import { Carousel } from "@/components/slider/carousel";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/providers/language-provider";
 
@@ -89,6 +90,7 @@ const copy = {
     ],
     rolesLabel: "Valor por perfil",
     rolesTitle: "Un ERP. Diferentes resultados para cada equipo.",
+    rolesWidget: "Módulos",
     roles: [
       {
         role: "Founder / CEO",
@@ -171,6 +173,15 @@ const copy = {
     ctaTitle:
       "Tu equipo decide mejor cuando toda la empresa comparte la misma información.",
     ctaButton: "Volver al sistema",
+    form: {
+      title: "Contáctanos",
+      name: "Nombre",
+      email: "Correo",
+      company: "Empresa",
+      message: "¿Qué quieres resolver?",
+      submit: "Enviar",
+      success: "¡Gracias! Te contactamos pronto.",
+    },
   },
   en: {
     problemLabel: "The ERP in 30 seconds",
@@ -255,6 +266,7 @@ const copy = {
     ],
     rolesLabel: "Value by role",
     rolesTitle: "One ERP. Different outcomes for every team.",
+    rolesWidget: "Modules",
     roles: [
       {
         role: "Founder / CEO",
@@ -335,8 +347,26 @@ const copy = {
     ctaTitle:
       "Your team makes better decisions when the whole company shares the same information.",
     ctaButton: "Back to the system",
+    form: {
+      title: "Contact us",
+      name: "Name",
+      email: "Email",
+      company: "Company",
+      message: "What do you want to solve?",
+      submit: "Send",
+      success: "Thanks! We will reach out soon.",
+    },
   },
 } as const;
+
+const roleTints = [
+  "bg-[radial-gradient(130%_100%_at_85%_0%,rgba(52,211,153,.26),rgba(5,150,105,.07)_45%,transparent_70%),linear-gradient(#0b1118,#0b1118)]",
+  "bg-[radial-gradient(130%_100%_at_15%_0%,rgba(110,231,183,.2),transparent_60%),linear-gradient(#0d141d,#0d141d)]",
+  "bg-[radial-gradient(130%_100%_at_80%_100%,rgba(184,117,255,.16),transparent_60%),linear-gradient(#0b1118,#0b1118)]",
+  "bg-[radial-gradient(130%_100%_at_20%_100%,rgba(52,211,153,.18),transparent_55%),linear-gradient(#0c1219,#0c1219)]",
+  "bg-[radial-gradient(130%_100%_at_50%_0%,rgba(245,185,66,.13),transparent_55%),linear-gradient(#0b1118,#0b1118)]",
+  "bg-[radial-gradient(130%_100%_at_85%_20%,rgba(110,231,183,.18),transparent_60%),linear-gradient(#0d1119,#0d1119)]",
+];
 
 export function UserGuide() {
   const { language } = useLanguage();
@@ -352,14 +382,14 @@ export function UserGuide() {
             {t.problemTitle}
           </h2>
         </Reveal>
-        <div className="mt-14 grid gap-px bg-border lg:grid-cols-2">
+        <div className="mt-14 grid gap-px overflow-hidden rounded-[1.5rem] border border-border bg-border lg:grid-cols-2">
           <Comparison title={t.before} items={t.beforeItems} negative />
           <Comparison title={t.after} items={t.afterItems} />
         </div>
       </section>
       <section
         id="diferenciadores"
-        className="my-24 overflow-hidden border border-primary/20 bg-[radial-gradient(circle_at_90%_10%,rgba(56,214,178,.16),transparent_34%),var(--surface)] p-6 sm:p-10"
+        className="my-24"
       >
         <Reveal>
           <p className="font-mono text-xs uppercase tracking-[.2em] text-primary">
@@ -369,11 +399,11 @@ export function UserGuide() {
             {t.differenceTitle}
           </h2>
         </Reveal>
-        <div className="mt-14 grid gap-4 sm:grid-cols-2">
+        <div className="mt-14 grid gap-px overflow-hidden rounded-[1.25rem] border border-border bg-border sm:grid-cols-2">
           {t.differences.map((item) => (
             <Reveal
               key={item.number}
-              className="glass-card group min-h-72 p-6 transition-colors hover:bg-primary-soft/30 sm:p-8"
+              className="group min-h-72 bg-background p-6 transition-colors hover:bg-white/[.03] sm:p-8"
             >
               <div className="flex items-center justify-between">
                 <span className="font-mono text-xs text-primary">
@@ -421,7 +451,7 @@ export function UserGuide() {
           ))}
         </div>
       </section>
-      <section className="my-24 border border-border bg-surface p-6 sm:p-10">
+      <section className="my-24">
         <Reveal>
           <p className="font-mono text-xs uppercase tracking-[.2em] text-primary">
             {t.exampleLabel}
@@ -431,55 +461,50 @@ export function UserGuide() {
           </h2>
           <p className="mt-6 text-lg text-muted-foreground">{t.exampleIntro}</p>
         </Reveal>
-        <div className="mt-14 grid gap-4 lg:grid-cols-6">
+        <div className="ruler mt-14" aria-hidden />
+        <ol className="mt-10 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
           {t.exampleSteps.map((step, index) => (
-            <div
-              key={step}
-              className="glass-card relative p-5"
-            >
-              <span className="font-mono text-[10px] text-primary">
-                0{index + 1}
-              </span>
-              <p className="mt-10 text-sm leading-6">{step}</p>
-              {index < t.exampleSteps.length - 1 && (
-                <span className="absolute -right-3 top-1/2 z-10 hidden size-6 place-items-center rounded-full bg-primary text-xs text-primary-foreground lg:grid">
-                  →
-                </span>
-              )}
-            </div>
+            <li key={step} className="border-l border-border pl-6">
+              <span className="font-mono text-[10px] text-primary">0{index + 1}</span>
+              <p className="mt-3 max-w-xs text-sm leading-6 text-white/80">{step}</p>
+            </li>
           ))}
-        </div>
+        </ol>
       </section>
-      <section id="perfiles" className="py-16">
-        <Reveal>
-          <p className="font-mono text-xs uppercase tracking-[.2em] text-primary">
+      <section id="perfiles" className="py-20">
+        <Reveal className="text-center">
+          <p className="font-mono text-[11px] uppercase tracking-[.3em] text-primary">
             {t.rolesLabel}
           </p>
-          <h2 className="mt-4 max-w-4xl text-4xl font-medium leading-[1] tracking-[-.04em] sm:text-5xl">
+          <h2 className="text-balance mx-auto mt-5 max-w-3xl text-[clamp(2.5rem,5vw,4.25rem)] font-medium leading-[1.02] tracking-[-.04em]">
             {t.rolesTitle}
           </h2>
         </Reveal>
-        <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {t.roles.map((role, index) => (
-            <Reveal
-              key={role.role}
-              className="glass-card group min-h-72 p-6 transition-colors hover:bg-surface/80"
-            >
-              <div className="flex justify-between">
-                <span className="font-mono text-[10px] text-primary">
-                  0{index + 1}
-                </span>
-                <span className="size-2 rounded-full border border-primary group-hover:bg-primary" />
-              </div>
-              <h3 className="mt-16 text-2xl font-medium">{role.role}</h3>
-              <p className="mt-4 text-sm leading-6 text-muted-foreground">
-                {role.result}
-              </p>
-              <p className="mt-7 font-mono text-[9px] uppercase tracking-[.12em] text-primary">
-                {role.modules}
-              </p>
-            </Reveal>
-          ))}
+        <div className="mt-12">
+          <Carousel label={t.rolesLabel} interval={4200}>
+            {t.roles.map((role, index) => (
+              <article
+                key={role.role}
+                className={`relative flex min-h-[26rem] flex-col justify-between overflow-hidden rounded-[2rem] border border-white/10 p-7 ${roleTints[index % roleTints.length]}`}
+              >
+                <div>
+                  <div className="flex items-start justify-between gap-4">
+                    <h3 className="max-w-[14ch] text-3xl font-medium leading-[1.05] tracking-[-.03em]">{role.role}</h3>
+                    <span className="font-mono text-[10px] text-white/40">0{index + 1}</span>
+                  </div>
+                  <p className="mt-5 max-w-xs text-sm leading-6 text-white/60">{role.result}</p>
+                </div>
+                <div className="rounded-2xl border border-white/10 bg-black/30 p-4 backdrop-blur-sm">
+                  <p className="font-mono text-[8px] uppercase tracking-[.18em] text-primary">{t.rolesWidget}</p>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {role.modules.split("·").map((module) => (
+                      <span key={module} className="rounded-full bg-white/[.07] px-3 py-1 text-xs text-white/80">{module.trim()}</span>
+                    ))}
+                  </div>
+                </div>
+              </article>
+            ))}
+          </Carousel>
         </div>
       </section>
       <section
@@ -498,20 +523,60 @@ export function UserGuide() {
           <Accordion items={[...t.faq]} />
         </Reveal>
       </section>
-      <section className="my-24 overflow-hidden border border-primary/20 bg-[radial-gradient(circle_at_80%_20%,rgba(56,214,178,.17),transparent_38%),var(--surface)] p-8 sm:p-14">
+      <section className="my-24 grid gap-12 overflow-hidden rounded-[2rem] border border-border bg-white/[.02] p-8 sm:p-12 lg:grid-cols-[1.1fr_.9fr] lg:gap-16">
         <Reveal>
           <p className="font-mono text-xs uppercase tracking-[.2em] text-primary">
             {t.ctaLabel}
           </p>
-          <h2 className="mt-4 max-w-4xl text-4xl font-medium leading-[1] tracking-[-.04em] sm:text-5xl">
+          <h2 className="mt-4 max-w-xl text-4xl font-medium leading-[1.02] tracking-[-.04em] sm:text-5xl">
             {t.ctaTitle}
           </h2>
-          <Button asChild className="mt-10">
-            <Link href="#top">{t.ctaButton} ↑</Link>
-          </Button>
+          <ul className="mt-10 grid gap-x-8 gap-y-5 sm:grid-cols-2">
+            {t.afterItems.map((item) => (
+              <li key={item} className="flex gap-3 text-sm leading-6 text-white/75">
+                <span className="text-primary" aria-hidden>✓</span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </Reveal>
+        <Reveal>
+          <ContactForm form={t.form} />
         </Reveal>
       </section>
     </>
+  );
+}
+
+function ContactForm({ form }: { form: { readonly title: string; readonly name: string; readonly email: string; readonly company: string; readonly message: string; readonly submit: string; readonly success: string } }) {
+  const [sent, setSent] = useState(false);
+  const inputClass = "w-full rounded-xl border border-border bg-black/25 px-4 py-3 text-sm text-foreground placeholder:text-white/35 focus:border-primary/50 focus:outline-none";
+
+  if (sent) {
+    return (
+      <div className="glass-card grid min-h-80 place-items-center p-8 text-center">
+        <div>
+          <span aria-hidden className="mx-auto grid size-12 place-items-center rounded-full bg-primary/15 text-lg text-primary">✓</span>
+          <p className="mt-5 text-lg font-medium">{form.success}</p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <form
+      className="glass-card space-y-4 p-6 sm:p-8"
+      onSubmit={(event) => { event.preventDefault(); setSent(true); }}
+    >
+      <p className="text-lg font-medium">{form.title}</p>
+      <div className="grid gap-4 sm:grid-cols-2">
+        <input required name="name" placeholder={form.name} className={inputClass} />
+        <input name="company" placeholder={form.company} className={inputClass} />
+      </div>
+      <input required type="email" name="email" placeholder={form.email} className={inputClass} />
+      <textarea name="message" placeholder={form.message} rows={4} className={inputClass} />
+      <Button type="submit" variant="white" className="w-full">{form.submit} <span aria-hidden>→</span></Button>
+    </form>
   );
 }
 
