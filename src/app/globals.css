@@ -35,6 +35,11 @@ button:focus-visible, a:focus-visible { outline: 3px solid color-mix(in srgb, va
 .text-balance { text-wrap: balance; }
 .scanlines { background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 3px, rgba(255,255,255,.035) 4px); }
 .security-grid { background-image: linear-gradient(to right, var(--border) 1px, transparent 1px), linear-gradient(to bottom, var(--border) 1px, transparent 1px); background-size: 48px 48px; mask-image: radial-gradient(circle at center, black, transparent 72%); }
+.timeline-grid {
+  background-image: linear-gradient(to right, rgba(255,255,255,.055) 1px, transparent 1px);
+  background-size: 64px 100%;
+  mask-image: linear-gradient(to bottom, transparent, black 12%, black 88%, transparent);
+}
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

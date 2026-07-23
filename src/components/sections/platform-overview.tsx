@@ -5,6 +5,7 @@ import { Reveal } from "@/components/motion/reveal";
 import { useLanguage } from "@/providers/language-provider";
 import { OperationsExplorer } from "@/components/sections/operations-explorer";
 import { ScrollLift } from "@/components/motion/reveal";
+import { IntelligenceTimeline } from "@/components/sections/intelligence-timeline";
 
 const copy = {
   es: {
@@ -264,6 +265,7 @@ export function PlatformOverview() {
             </div>
           </Reveal>
         </section>
+        <IntelligenceTimeline />
         <OperationsExplorer />
         <section
           id="story-3"
