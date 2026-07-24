@@ -8,18 +8,20 @@ import { useLanguage, type Language } from "@/providers/language-provider";
 
 const nav = {
   es: [
-    { label: "Integraciones", href: "/integraciones" },
-    { label: "AI Agents", href: "/agentes-ia" },
     { label: "Cómo funciona", href: "/#como-funciona" },
     { label: "Para tu equipo", href: "/#para-tu-equipo" },
+    { label: "Integraciones", href: "/integraciones" },
+    { label: "AI Agents", href: "/agentes-ia" },
     { label: "Precios", href: "/precios" },
+    { label: "FAQs", href: "/#faq" },
   ],
   en: [
-    { label: "Integrations", href: "/integraciones" },
-    { label: "AI Agents", href: "/agentes-ia" },
     { label: "How it works", href: "/#como-funciona" },
     { label: "For your team", href: "/#para-tu-equipo" },
+    { label: "Integrations", href: "/integraciones" },
+    { label: "AI Agents", href: "/agentes-ia" },
     { label: "Pricing", href: "/precios" },
+    { label: "FAQs", href: "/#faq" },
   ],
 } as const;
 

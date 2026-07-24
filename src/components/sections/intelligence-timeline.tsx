@@ -13,10 +13,10 @@ const copy = {
     core: "Inicio",
     result: "Resultados",
     steps: [
-      ["Conexión", "Conecta tus herramientas e integraciones."],
-      ["Gestión", "Administra clientes, ventas, finanzas, documentos y más."],
-      ["Automatización", "La IA y las automatizaciones trabajan por ti."],
-      ["Resultados", "Toma mejores decisiones y haz crecer tu negocio."],
+      ["Todo conectado", "Procesos, finanzas, proyectos e integraciones en un solo ecosistema."],
+      ["100% personalizable", "Adapta módulos, dashboards, roles y flujos a tu operación."],
+      ["IA con contexto real", "Agentes que entienden tus datos y procesos para actuar mejor."],
+      ["Arquitectura abierta", "Conecta Google Workspace, Microsoft 365, Stripe, APIs y MCP."],
     ],
     branches: [
       { pill: "Conexión e integraciones", first: "herramientas conectadas", second: "datos sincronizados" },
@@ -31,10 +31,10 @@ const copy = {
     core: "Start",
     result: "Results",
     steps: [
-      ["Connection", "Connect your tools and integrations."],
-      ["Management", "Manage customers, sales, finance, documents and more."],
-      ["Automation", "AI and automations work for you."],
-      ["Results", "Make better decisions and grow your business."],
+      ["Everything connected", "Processes, finance, projects and integrations in one ecosystem."],
+      ["100% customizable", "Adapt modules, dashboards, roles and workflows to your operation."],
+      ["AI with real context", "Agents that understand your data and processes to act better."],
+      ["Open architecture", "Connect Google Workspace, Microsoft 365, Stripe, APIs and MCP."],
     ],
     branches: [
       { pill: "Connections & integrations", first: "tools connected", second: "data synchronized" },

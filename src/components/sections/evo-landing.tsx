@@ -55,12 +55,6 @@ const copy = {
       "Finanzas, proyectos, personas y datos en un solo lugar, conectados por IA.",
       "Menos herramientas, menos trabajo manual, mejores decisiones.",
     ],
-    features: [
-      { icon: "✦", title: "IA con contexto real", body: "Los agentes entienden tu empresa, datos y procesos para analizar, generar y ejecutar acciones." },
-      { icon: "◉", title: "Todo conectado", body: "Procesos, finanzas, proyectos, documentos e integraciones en un solo ecosistema." },
-      { icon: "◳", title: "100% personalizable", body: "Adapta módulos, formularios, dashboards, roles y flujos sin desarrollos complejos." },
-      { icon: "❋", title: "Arquitectura abierta", body: "Conecta Google Workspace, Microsoft 365, Stripe, Slack, WhatsApp, APIs y MCP." },
-    ],
     learnMore: "Saber más",
     scaleLine1: "Un ERP inteligente",
     scaleBefore: "para ",
@@ -83,14 +77,6 @@ const copy = {
     redefChips: ["Finanzas", "Proyectos", "CRM"],
     redefAnnotation: ["10x", "Datos analizados"],
     glassCard: { title: "Seguridad con IA", index: "01", body: "Permisos y trazabilidad en cada acción" },
-    innovTitle: "Innovación con IA para un mejor mañana.",
-    innovBody: "Vive el futuro con 8ity, donde la innovación se une a la inteligencia. Nuestras soluciones están diseñadas para crear operaciones más inteligentes.",
-    innovStats: ["Proyectos exitosos", "Reducción de trabajo manual", "Más datos analizados"],
-    innovCard: "Precisión en detección de anomalías",
-    innovPoints: [
-      ["02", "Nuestros módulos con IA están diseñados para crear operaciones más inteligentes."],
-      ["03", "Redefine lo que es posible con tecnología de punta y contexto compartido."],
-    ],
     teamEyebrow: "Para tu equipo",
     teamTitle: "Cada área trabaja mejor. Toda la empresa avanza junta.",
     teamBody: "8ity adapta la experiencia a cada equipo, mientras mantiene datos, permisos y procesos conectados en una sola operación.",
@@ -108,7 +94,7 @@ const copy = {
       { num: "03", lead: "Personalización total", sub: " sin procesos rígidos", title: "Se adapta a tu forma de trabajar", body: "Configura módulos, dashboards, formularios, roles, permisos, workspaces y agentes sin depender de desarrollos complejos." },
       { num: "04", lead: "Arquitectura abierta", sub: " para conectar tu ecosistema", title: "Conecta más y administra menos", body: "Integra tus servicios, APIs y servidores MCP en un mismo entorno para reducir duplicidad, proveedores y costos operativos." },
     ],
-    faqTitle: "Preguntas Frecuentes",
+    faqTitle: "FAQs",
     faqBody: "Encuentra respuestas a las dudas más comunes sobre 8ity. Descubre cómo un ERP con IA puede transformar tu empresa.",
     faq: [
       ["¿8ity es un ERP o un CRM?", "8ity es un ERP inteligente y modular. El CRM es una herramienta adicional incluida para gestionar pipeline, cuentas y seguimientos dentro del mismo contexto operativo."],
@@ -145,15 +131,9 @@ const copy = {
       "Finance, projects, people and data in one place, connected by AI.",
       "Fewer tools, less manual work, better decisions.",
     ],
-    features: [
-      { icon: "✦", title: "AI with real context", body: "Agents understand your company, data and processes to analyze, generate and execute actions." },
-      { icon: "◉", title: "Everything connected", body: "Processes, finance, projects, documents and integrations in a single ecosystem." },
-      { icon: "◳", title: "Fully customizable", body: "Adapt modules, forms, dashboards, roles and workflows without complex development." },
-      { icon: "❋", title: "Open architecture", body: "Connect Google Workspace, Microsoft 365, Stripe, Slack, WhatsApp, APIs and MCP." },
-    ],
     learnMore: "Learn More",
     scaleLine1: "One intelligent ERP",
-    scaleBefore: "Real ",
+    scaleBefore: "for ",
     scaleAfter: ".",
     scaleCta: "Get Started",
     scaleTiles: [
@@ -173,14 +153,6 @@ const copy = {
     redefChips: ["Finance", "Projects", "CRM"],
     redefAnnotation: ["10x", "Data analyzed"],
     glassCard: { title: "Cybersecurity with AI", index: "01", body: "Permissions and auditability on every action" },
-    innovTitle: "Innovation with AI for a better tomorrow.",
-    innovBody: "Experience the future with 8ity, where innovation meets intelligence. Our solutions are designed to create smarter operations.",
-    innovStats: ["Successful projects", "Reduction in manual efforts", "More data analyzed"],
-    innovCard: "Anomaly detection accuracy",
-    innovPoints: [
-      ["02", "Our AI modules are designed to create smarter operations."],
-      ["03", "Redefine what's possible through cutting-edge technology and shared context."],
-    ],
     teamEyebrow: "For your team",
     teamTitle: "Every area works better. The whole company moves together.",
     teamBody: "8ity adapts the experience to every team while keeping data, permissions and processes connected in one operation.",
@@ -283,22 +255,7 @@ export function EvoLanding() {
         {/* AGENT SHOWCASE (PC collage) */}
         <AgentShowcase />
 
-        {/* FEATURES */}
-        <section className="grid gap-4 pb-24 sm:grid-cols-2 lg:grid-cols-4">
-          {t.features.map((feature) => (
-            <ScrollRise
-              key={feature.title}
-              className="group rounded-2xl border border-accent/12 bg-[linear-gradient(180deg,rgba(89,187,149,.06),rgba(3,8,16,.5))] p-6 transition-colors hover:border-accent/40"
-            >
-              <span aria-hidden className="grid size-10 place-items-center rounded-full border border-accent/30 text-sm text-accent">{feature.icon}</span>
-              <h3 className="mt-10 text-base font-medium">{feature.title}</h3>
-              <p className="mt-3 text-xs leading-6 text-muted-foreground">{feature.body}</p>
-              <p className="mt-6 text-xs font-medium text-white/55 transition-colors group-hover:text-white">{t.learnMore}</p>
-            </ScrollRise>
-          ))}
-        </section>
-
-        <ScaleStatement t={t} />
+        <ScaleStatement t={t} h={heroCopy[language]} />
 
         {/* REDEFINING */}
         <section className="grid gap-12 pb-24 lg:grid-cols-[.9fr_1.1fr] lg:items-center">
@@ -362,31 +319,6 @@ export function EvoLanding() {
           ))}
         </motion.section>
 
-        {/* INNOVATION */}
-        <section className="pb-24">
-          <div className="grid gap-6 lg:grid-cols-[1fr_.75fr] lg:items-end">
-            <h2 className="max-w-md text-3xl font-medium leading-[1.15] tracking-[-.02em] sm:text-4xl"><ScrollWords text={t.innovTitle} /></h2>
-            <motion.p {...fadeUp} className="max-w-sm text-sm leading-7 text-muted-foreground lg:justify-self-end">{t.innovBody}</motion.p>
-          </div>
-
-          <ScrollRise className="mt-12 grid overflow-hidden rounded-2xl border border-accent/15 bg-[linear-gradient(135deg,rgba(89,187,149,.07),rgba(3,8,16,.45))] lg:grid-cols-[.9fr_1.1fr]">
-            <div className="flex min-h-56 items-end border-b border-white/10 p-7 lg:border-b-0 lg:border-r sm:p-9">
-              <div>
-                <span aria-hidden className="mb-6 block size-2 rounded-full bg-accent" />
-                <p className="max-w-sm text-2xl font-medium leading-snug">{t.innovCard}</p>
-              </div>
-            </div>
-            <div className="grid sm:grid-cols-3">
-              {t.innovStats.map((stat, index) => (
-                <div key={stat} className="border-b border-white/10 p-6 last:border-b-0 sm:border-b-0 sm:border-r sm:last:border-r-0 sm:p-7">
-                  <span className="font-mono text-[10px] text-accent">0{index + 1}</span>
-                  <p className="mt-10 text-sm leading-6 text-white/70">{stat}</p>
-                </div>
-              ))}
-            </div>
-          </ScrollRise>
-        </section>
-
         {/* STACKED CARDS */}
         <StackDeck t={t} imageAlt={imageAlt.stack} />
 
@@ -439,8 +371,13 @@ export function EvoLanding() {
 
 const scaleTileRadius = [1, .88, 1.08, .94, 1.04, .86, 1.06, .96];
 
-function ScaleStatement({ t }: { t: (typeof copy)["es"] | (typeof copy)["en"] }) {
-  const [index, setIndex] = useState(0);
+function ScaleStatement({
+  t,
+  h,
+}: {
+  t: (typeof copy)["es"] | (typeof copy)["en"];
+  h: (typeof heroCopy)["es"] | (typeof heroCopy)["en"];
+}) {
   const [hovered, setHovered] = useState<number | null>(null);
   const fieldRef = useRef<HTMLDivElement>(null);
   const tileRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -449,11 +386,6 @@ function ScaleStatement({ t }: { t: (typeof copy)["es"] | (typeof copy)["en"] })
   useEffect(() => {
     hoveredRef.current = hovered;
   }, [hovered]);
-
-  useEffect(() => {
-    const timer = window.setInterval(() => setIndex((i) => (i + 1) % t.scaleTiles.length), 2600);
-    return () => window.clearInterval(timer);
-  }, [t.scaleTiles.length]);
 
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -486,8 +418,6 @@ function ScaleStatement({ t }: { t: (typeof copy)["es"] | (typeof copy)["en"] })
     return () => cancelAnimationFrame(frame);
   }, [t.scaleTiles.length]);
 
-  const word = t.scaleTiles[index].word;
-
   return (
     <section className="relative -mx-5 mb-24 min-h-[44rem] overflow-hidden sm:-mx-8">
       <div ref={fieldRef} aria-hidden className="absolute inset-[3%]" />
@@ -516,30 +446,10 @@ function ScaleStatement({ t }: { t: (typeof copy)["es"] | (typeof copy)["en"] })
       ))}
 
       <div className="relative z-20 mx-auto flex min-h-[44rem] max-w-3xl flex-col items-center justify-center px-5 text-center">
-        <motion.h2 {...fadeUp} className="text-[clamp(2.4rem,5vw,4.2rem)] font-medium leading-[1.08] tracking-[-.03em]">
-          <span className="block">{t.scaleLine1}</span>
-          <span className="block whitespace-nowrap">
-            {t.scaleBefore}
-            <span className="relative inline-block overflow-hidden align-bottom text-accent">
-              <AnimatePresence mode="wait" initial={false}>
-                <motion.span
-                  key={word}
-                  initial={{ y: "70%", opacity: 0 }}
-                  animate={{ y: "0%", opacity: 1 }}
-                  exit={{ y: "-60%", opacity: 0 }}
-                  transition={{ duration: .5, ease: EASE }}
-                  className="inline-block"
-                >
-                  {word}
-                </motion.span>
-              </AnimatePresence>
-            </span>
-            {t.scaleAfter}
-          </span>
+        <motion.h2 {...fadeUp} className="text-balance text-[clamp(2.4rem,5vw,4.2rem)] font-medium leading-[1.08] tracking-[-.03em]">
+          <span className="block">{h.top}</span>
+          <span className="block">{h.bottom}</span>
         </motion.h2>
-        <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: .2 }} className="mt-10">
-          <Dialog trigger={<button><PillButton>{t.scaleCta}</PillButton></button>} />
-        </motion.div>
       </div>
     </section>
   );
@@ -790,7 +700,18 @@ function FlowCurves() {
 
 export function EvoHero() {
   const { language } = useLanguage();
+  const t = copy[language];
   const h = heroCopy[language];
+  const imageAlt = screenshotAlts[language].dashboard;
+  const reduceMotion = useReducedMotion();
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => setIndex((i) => (i + 1) % t.scaleTiles.length), 2600);
+    return () => window.clearInterval(timer);
+  }, [t.scaleTiles.length]);
+
+  const word = t.scaleTiles[index].word;
 
   return (
     <section className="relative isolate flex min-h-[92vh] w-full flex-col overflow-hidden bg-background">
@@ -807,17 +728,75 @@ export function EvoHero() {
       {/* smooth fade into next section */}
       <div aria-hidden className="absolute inset-x-0 bottom-0 z-[1] h-48 bg-gradient-to-b from-transparent via-background/70 to-background" />
 
-      <div className="relative z-10 mx-auto flex w-full max-w-[1000px] flex-1 flex-col items-center justify-center px-6 py-28 text-center sm:px-10">
-        <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease: EASE }} className="text-balance text-[clamp(2.8rem,7.5vw,5.8rem)] font-medium leading-[.98] tracking-[-.035em] text-white">
-          <span className="block">{h.top}</span>
-          <span className="block">{h.bottom}</span>
-        </motion.h1>
-        <motion.p initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease: EASE, delay: .12 }} className="mt-8 max-w-xl text-lg leading-8 text-white">
-          {h.paragraph}
-        </motion.p>
-        <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease: EASE, delay: .2 }} className="mt-10 flex flex-wrap justify-center gap-3">
-          <Dialog trigger={<button><PillButton>{h.primary} ›</PillButton></button>} />
-          <a href="#como-funciona"><PillButton variant="outline">{h.secondary}</PillButton></a>
+      <div className="relative z-10 mx-auto grid w-full max-w-[1320px] flex-1 items-center gap-14 px-6 py-28 sm:px-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,.88fr)] lg:gap-14 lg:py-24">
+        <div className="flex min-w-0 flex-col items-center text-center lg:items-start lg:text-left">
+          <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease: EASE }} className="w-full text-[clamp(2.1rem,4.6vw,4rem)] font-medium leading-[1] tracking-[-.035em] text-white">
+            <span className="block">{t.scaleLine1}</span>
+            <span className="block whitespace-nowrap">
+              {t.scaleBefore}
+              <span className="relative inline-block h-[1.08em] w-[10.25ch] overflow-hidden align-bottom text-left text-accent">
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.span
+                    key={word}
+                    initial={{ y: "70%", opacity: 0 }}
+                    animate={{ y: "0%", opacity: 1 }}
+                    exit={{ y: "-60%", opacity: 0 }}
+                    transition={{ duration: .5, ease: EASE }}
+                    className="absolute inset-x-0 top-0 inline-block whitespace-nowrap"
+                  >
+                    {word}
+                  </motion.span>
+                </AnimatePresence>
+              </span>
+              {t.scaleAfter}
+            </span>
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: EASE, delay: .12 }}
+            className="mt-7 max-w-xl text-base leading-7 text-white/65 sm:text-lg sm:leading-8"
+          >
+            {h.paragraph}
+          </motion.p>
+          <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease: EASE, delay: .2 }} className="mt-9 flex flex-wrap justify-center gap-3 lg:justify-start">
+            <Dialog trigger={<button><PillButton>{h.primary} ›</PillButton></button>} />
+            <a href="#como-funciona"><PillButton variant="outline">{h.secondary}</PillButton></a>
+          </motion.div>
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, x: 48, scale: .96 }}
+          animate={{ opacity: 1, x: 0, scale: 1 }}
+          transition={{ duration: 1.1, ease: EASE, delay: .12 }}
+          className="relative mx-auto min-w-0 w-full max-w-[560px]"
+        >
+          <div aria-hidden className="absolute -inset-8 rounded-[3rem] bg-[radial-gradient(circle_at_50%_50%,rgba(89,187,149,.2),transparent_68%)] blur-2xl" />
+          <motion.div
+            animate={reduceMotion ? undefined : { y: [0, -7, 0] }}
+            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+            className="relative overflow-hidden rounded-[1.35rem] border border-white/15 bg-[#0d141d]/90 p-2 shadow-[0_36px_100px_rgba(0,0,0,.55)] backdrop-blur-xl sm:p-3"
+          >
+            <div className="flex h-9 items-center gap-1.5 px-2 sm:h-10 sm:px-3">
+              <span className="size-2 rounded-full bg-white/22" />
+              <span className="size-2 rounded-full bg-white/14" />
+              <span className="size-2 rounded-full bg-accent/65" />
+              <span className="ml-auto font-mono text-[8px] uppercase tracking-[.18em] text-white/35">
+                8ity · workspace
+              </span>
+            </div>
+            <div className="relative aspect-[30/17] overflow-hidden rounded-[.85rem] border border-white/10 bg-[#101720]">
+              <Image
+                src={PRODUCT_SHOTS.dashboard}
+                alt={imageAlt}
+                fill
+                loading="eager"
+                sizes="(max-width: 1023px) 90vw, 56vw"
+                className="object-cover object-top"
+              />
+              <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-black/18 via-transparent to-accent/5" />
+            </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>
