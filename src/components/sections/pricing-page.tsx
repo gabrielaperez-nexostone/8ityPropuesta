@@ -516,31 +516,6 @@ export function PricingPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[1200px] px-5 py-24 sm:px-8">
-        <SectionHeading
-          eyebrow={t.faq.eyebrow}
-          title={t.faq.title}
-          centered
-        />
-        <StaggerContainer className="mt-12 grid gap-4 md:grid-cols-2">
-          {t.faq.items.map((item) => (
-            <StaggerItem key={item.q}>
-              <article className="h-full rounded-[1.4rem] border border-border bg-white/[.025] p-6 sm:p-7">
-                <h3 className="flex gap-3 text-sm font-medium">
-                  <span aria-hidden className="text-accent">
-                    ›
-                  </span>
-                  {item.q}
-                </h3>
-                <p className="mt-4 pl-5 text-sm leading-6 text-muted-foreground">
-                  {item.a}
-                </p>
-              </article>
-            </StaggerItem>
-          ))}
-        </StaggerContainer>
-      </section>
-
       <section className="relative border-t border-border">
         <div aria-hidden className="texture-drift pointer-events-none absolute inset-0" />
         <div

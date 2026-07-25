@@ -25,7 +25,7 @@ export function FlowText({
             className="inline-block will-change-transform"
             initial={{ y: "115%", rotate: 2, opacity: 0 }}
             {...(inView
-              ? { whileInView: visible, viewport: { once: true, amount: .5, margin: "0px 0px -6% 0px" } }
+              ? { whileInView: visible, viewport: { once: true, amount: .2, margin: "0px 0px -6% 0px" } }
               : { animate: visible })}
             transition={{
               duration: .95,

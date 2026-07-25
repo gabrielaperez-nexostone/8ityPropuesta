@@ -64,7 +64,7 @@ export function Highlights() {
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        viewport={{ once: true, amount: .6 }}
+        viewport={{ once: true, amount: .2 }}
         transition={{ duration: 1 }}
         className="border-t border-border py-10"
       >
@@ -84,7 +84,7 @@ export function Highlights() {
             key={label}
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: .5 }}
+            viewport={{ once: true, amount: .2 }}
             transition={{ duration: .8, delay: index * .12, ease: [0.16, 1, 0.3, 1] }}
             className="bg-background p-8 text-center"
           >

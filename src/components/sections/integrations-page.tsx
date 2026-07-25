@@ -22,7 +22,7 @@ const pageCopy = {
       title: "Un contexto compartido",
       status: "Todo sincronizado",
       center: "8ity",
-      nodes: ["Bancos", "Workspace", "IA", "Pagos"],
+      nodes: ["Bancos", "Workspace", "Pagos", "WhatsApp", "Gmail", "Drive", "IA", "MCP"],
     },
     banksLabel: "1,000+ bancos de LatAm vía Syncfy",
     integrationsEyebrow: "Conexiones principales",
@@ -131,7 +131,7 @@ const pageCopy = {
       title: "One shared context",
       status: "Everything in sync",
       center: "8ity",
-      nodes: ["Banks", "Workspace", "AI", "Payments"],
+      nodes: ["Banks", "Workspace", "Payments", "WhatsApp", "Gmail", "Drive", "AI", "MCP"],
     },
     banksLabel: "1,000+ LatAm banks via Syncfy",
     integrationsEyebrow: "Core connections",
@@ -250,25 +250,22 @@ export function IntegrationsPage() {
   return (
     <main className="relative overflow-hidden bg-background text-foreground">
       <section className="relative border-b border-border">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(65%_90%_at_70%_12%,rgba(89,187,149,.13),transparent_65%)]"
-        />
-        <div
-          aria-hidden
-          className="hero-grid pointer-events-none absolute inset-0 opacity-60"
-        />
-        <div className="relative mx-auto grid min-h-[700px] max-w-[1200px] items-center gap-14 px-5 py-20 sm:px-8 lg:grid-cols-[.9fr_1.1fr] lg:py-24">
+        <div aria-hidden className="hero-rings pointer-events-none absolute inset-0 opacity-80" />
+        <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_90%_at_50%_0%,rgba(89,187,149,.12),transparent_70%)]" />
+        <div className="relative mx-auto max-w-[1200px] px-5 pb-16 pt-20 sm:px-8 lg:pt-24">
           <Reveal>
-            <div>
-              <Eyebrow>{t.hero.eyebrow}</Eyebrow>
-              <h1 className="text-balance mt-5 max-w-2xl text-[clamp(2.7rem,6vw,5.25rem)] font-medium leading-[.98] tracking-[-.045em]">
+            <div className="mx-auto max-w-3xl text-center">
+              <p className="mx-auto inline-flex items-center rounded-full border border-white/12 bg-white/[.035] px-4 py-2 text-[11px] text-white/60">
+                <span aria-hidden className="mr-2 text-accent">✦</span>
+                {t.hero.eyebrow}
+              </p>
+              <h1 className="text-balance mx-auto mt-8 max-w-3xl text-[clamp(2.8rem,6.5vw,5.25rem)] font-medium leading-[.98] tracking-[-.045em]">
                 {t.hero.title}
               </h1>
-              <p className="mt-7 max-w-xl text-[15px] leading-7 text-muted-foreground sm:text-base">
+              <p className="mx-auto mt-7 max-w-2xl text-sm leading-7 text-muted-foreground sm:text-base">
                 {t.hero.body}
               </p>
-              <div className="mt-9 flex flex-wrap gap-3">
+              <div className="mt-9 flex flex-wrap justify-center gap-3">
                 <Link
                   href="#conexiones"
                   className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#07100c] transition-transform hover:-translate-y-0.5"
@@ -285,7 +282,7 @@ export function IntegrationsPage() {
             </div>
           </Reveal>
 
-          <Reveal className="lg:pl-6">
+          <Reveal className="mt-16">
             <EcosystemMap copy={t.map} />
           </Reveal>
         </div>
@@ -325,30 +322,6 @@ export function IntegrationsPage() {
         </StaggerContainer>
       </section>
 
-      <section className="border-y border-border bg-white/[.018]">
-        <div className="mx-auto max-w-[1200px] px-5 py-24 sm:px-8">
-          <SectionIntro
-            eyebrow={t.connectedEyebrow}
-            title={t.connectedTitle}
-            body={t.connectedBody}
-          />
-          <StaggerContainer className="mt-12 grid overflow-hidden rounded-[1.5rem] border border-border sm:grid-cols-2 lg:grid-cols-4">
-            {t.connected.map(([number, title, body]) => (
-              <StaggerItem
-                key={title}
-                className="border-b border-border p-6 last:border-b-0 sm:[&:nth-child(odd)]:border-r lg:border-b-0 lg:border-r lg:last:border-r-0"
-              >
-                <p className="font-mono text-[10px] text-accent">{number}</p>
-                <h3 className="mt-8 text-base font-medium">{title}</h3>
-                <p className="mt-3 text-xs leading-6 text-muted-foreground">
-                  {body}
-                </p>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-        </div>
-      </section>
-
       <section className="mx-auto max-w-[1200px] px-5 py-24 sm:px-8">
         <SectionIntro
           eyebrow={t.toolsEyebrow}
@@ -371,41 +344,6 @@ export function IntegrationsPage() {
             </StaggerItem>
           ))}
         </StaggerContainer>
-      </section>
-
-      <section className="border-y border-border bg-white/[.018]">
-        <div className="mx-auto grid max-w-[1200px] items-center gap-14 px-5 py-24 sm:px-8 lg:grid-cols-[.8fr_1.2fr]">
-          <Reveal>
-            <div>
-              <Eyebrow>{t.dashboard.eyebrow}</Eyebrow>
-              <h2 className="text-balance mt-5 text-[clamp(2.25rem,5vw,4rem)] font-medium leading-[1.02] tracking-[-.04em]">
-                {t.dashboard.title}
-              </h2>
-              <p className="mt-6 text-sm leading-7 text-muted-foreground">
-                {t.dashboard.body}
-              </p>
-              <ul className="mt-8 space-y-4">
-                {t.dashboard.points.map((point) => (
-                  <li
-                    key={point}
-                    className="flex items-center gap-3 text-sm text-white/70"
-                  >
-                    <span aria-hidden className="text-accent">
-                      ↗
-                    </span>
-                    {point}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </Reveal>
-          <Reveal>
-            <DashboardPanel
-              title={t.dashboard.panelTitle}
-              status={t.dashboard.panelStatus}
-            />
-          </Reveal>
-        </div>
       </section>
 
       <section className="relative mx-auto max-w-[1200px] px-5 py-24 sm:px-8">
@@ -573,24 +511,19 @@ function EcosystemMap({
     nodes: readonly string[];
   };
 }) {
-  const positions = [
-    "left-[8%] top-[15%]",
-    "right-[6%] top-[18%]",
-    "bottom-[12%] left-[10%]",
-    "bottom-[10%] right-[8%]",
-  ];
+  const n = copy.nodes.length;
+  const pts = copy.nodes.map((node, i) => {
+    const a = (i / n) * Math.PI * 2 - Math.PI / 2;
+    return { node, x: 50 + Math.cos(a) * 41, y: 50 + Math.sin(a) * 35 };
+  });
 
   return (
-    <div className="relative mx-auto aspect-[1.12/1] w-full max-w-[620px] overflow-hidden rounded-[2rem] border border-border bg-[#071019]/80 p-5 shadow-[0_35px_120px_rgba(0,0,0,.35)]">
+    <div className="relative mx-auto aspect-[1.5/1] w-full max-w-[920px] overflow-hidden rounded-[2rem] border border-border bg-[#071019]/80 p-5 shadow-[0_35px_120px_rgba(0,0,0,.35)] sm:p-7">
       <div aria-hidden className="hero-grid absolute inset-0 opacity-80" />
-      <div
-        aria-hidden
-        className="absolute inset-[19%] rounded-full border border-accent/15"
-      />
-      <div
-        aria-hidden
-        className="absolute inset-[31%] rounded-full border border-accent/20"
-      />
+      <div aria-hidden className="absolute inset-[13%] rounded-full border border-accent/10" />
+      <div aria-hidden className="absolute inset-[25%] rounded-full border border-accent/15" />
+      <div aria-hidden className="absolute inset-[37%] rounded-full border border-accent/20" />
+
       <div className="relative z-10 flex items-center justify-between font-mono text-[9px] uppercase tracking-[.2em] text-white/40">
         <span>{copy.title}</span>
         <span className="inline-flex items-center gap-2 text-accent">
@@ -599,89 +532,28 @@ function EcosystemMap({
         </span>
       </div>
 
-      <div className="absolute left-1/2 top-1/2 z-10 flex size-28 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full border border-accent/30 bg-[#0b1718] shadow-[0_0_70px_rgba(89,187,149,.22)]">
-        <Image src="/8ity-orb.webp" width={38} height={38} alt="" />
-        <span className="mt-2 text-sm font-semibold">{copy.center}</span>
+      <svg aria-hidden viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 h-full w-full text-accent/25" fill="none">
+        {pts.map((p) => (
+          <line key={p.node} x1="50" y1="50" x2={p.x} y2={p.y} stroke="currentColor" strokeWidth=".3" />
+        ))}
+      </svg>
+
+      <div className="absolute left-1/2 top-1/2 z-10 flex size-24 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full border border-accent/30 bg-[#0b1718] shadow-[0_0_70px_rgba(89,187,149,.22)]">
+        <Image src="/8ity-orb.webp" width={34} height={34} alt="" />
+        <span className="mt-1.5 text-sm font-semibold">{copy.center}</span>
       </div>
 
-      {copy.nodes.map((node, index) => (
+      {pts.map((p) => (
         <div
-          key={node}
-          className={`absolute z-10 ${positions[index]} rounded-full border border-white/12 bg-[#0a1119]/90 px-4 py-2 text-xs text-white/70`}
+          key={p.node}
+          style={{ left: `${p.x}%`, top: `${p.y}%` }}
+          className="absolute z-10 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full border border-white/12 bg-[#0a1119]/90 px-3.5 py-1.5 text-xs text-white/70"
         >
           <span className="mr-2 inline-block size-1.5 rounded-full bg-accent" />
-          {node}
+          {p.node}
         </div>
       ))}
-
-      <svg
-        aria-hidden
-        viewBox="0 0 600 520"
-        className="absolute inset-0 h-full w-full text-accent/35"
-        fill="none"
-      >
-        <path d="M300 260C225 190 174 148 112 120" stroke="currentColor" />
-        <path d="M300 260C377 187 435 145 502 122" stroke="currentColor" />
-        <path d="M300 260C225 332 171 375 112 414" stroke="currentColor" />
-        <path d="M300 260C380 331 437 373 510 416" stroke="currentColor" />
-        <circle cx="300" cy="260" r="4" fill="currentColor" />
-        <circle cx="112" cy="120" r="3" fill="currentColor" />
-        <circle cx="502" cy="122" r="3" fill="currentColor" />
-        <circle cx="112" cy="414" r="3" fill="currentColor" />
-        <circle cx="510" cy="416" r="3" fill="currentColor" />
-      </svg>
     </div>
   );
 }
 
-function DashboardPanel({
-  title,
-  status,
-}: {
-  title: string;
-  status: string;
-}) {
-  const bars = [42, 58, 50, 72, 63, 82, 68, 76, 91, 84, 96];
-  return (
-    <div className="rounded-[2rem] border border-border bg-[#071019]/90 p-5 sm:p-7">
-      <div className="flex items-center justify-between">
-        <div>
-          <p className="text-sm font-medium">{title}</p>
-          <p className="mt-1 text-[10px] text-accent">{status}</p>
-        </div>
-        <Image src="/8ity-orb.webp" width={28} height={28} alt="" />
-      </div>
-      <div className="mt-7 grid gap-3 sm:grid-cols-3">
-        {[
-          ["MRR", "$48.2k"],
-          ["Runway", "18 mo"],
-          ["Active ops", "128"],
-        ].map(([label, value]) => (
-          <div key={label} className="rounded-xl border border-white/8 bg-white/[.025] p-4">
-            <p className="text-[10px] uppercase tracking-[.14em] text-white/35">
-              {label}
-            </p>
-            <p className="mt-3 text-xl font-medium">{value}</p>
-          </div>
-        ))}
-      </div>
-      <div className="mt-3 rounded-2xl border border-white/8 bg-white/[.025] p-5">
-        <div className="flex h-44 items-end gap-2">
-          {bars.map((height, index) => (
-            <span
-              key={`${height}-${index}`}
-              className="flex-1 rounded-t-sm bg-accent/45"
-              style={{ height: `${height}%` }}
-            />
-          ))}
-        </div>
-        <div className="mt-4 h-px bg-white/8" />
-        <div className="mt-4 flex justify-between text-[9px] uppercase tracking-[.15em] text-white/30">
-          <span>Finance</span>
-          <span>CRM</span>
-          <span>Sync status</span>
-        </div>
-      </div>
-    </div>
-  );
-}

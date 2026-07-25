@@ -243,7 +243,6 @@ export function EvoLanding() {
   const { language } = useLanguage();
   const t = copy[language];
   const imageAlt = screenshotAlts[language];
-  const [open, setOpen] = useState(-1);
 
   return (
     <div className="relative overflow-x-clip bg-background text-foreground">
@@ -255,6 +254,10 @@ export function EvoLanding() {
         {/* AGENT SHOWCASE (PC collage) */}
         <AgentShowcase />
 
+        {/* CÓMO FUNCIONA — título */}
+        <IntelligenceTimeline variant="header" />
+
+        {/* statement (tiles) */}
         <ScaleStatement t={t} h={heroCopy[language]} />
 
         {/* REDEFINING */}
@@ -310,59 +313,12 @@ export function EvoLanding() {
           </motion.div>
         </section>
 
-        {/* LOGO STRIP */}
-        <motion.section {...fadeUp} className="flex flex-wrap items-center justify-between gap-x-10 gap-y-5 pb-24">
-          {["Google Workspace", "Stripe", "Syncfy", "WhatsApp", "Gmail"].map((logo) => (
-            <span key={logo} className="inline-flex items-center gap-2 text-sm font-semibold text-white/40 transition-colors hover:text-white/80">
-              <span aria-hidden className="text-base">✳</span>{logo}
-            </span>
-          ))}
-        </motion.section>
+        {/* FOR YOUR TEAM */}
+        <TeamSection t={t} />
 
         {/* STACKED CARDS */}
         <StackDeck t={t} imageAlt={imageAlt.stack} />
 
-        {/* NEON-STYLE TIMELINE */}
-        <IntelligenceTimeline />
-
-        {/* FOR YOUR TEAM */}
-        <TeamSection t={t} />
-
-        {/* FAQ */}
-        <section id="faq" className="pb-24">
-          <div className="grid gap-6 lg:grid-cols-[1fr_.75fr] lg:items-end">
-            <h2 className="max-w-sm text-3xl font-medium leading-[1.15] tracking-[-.02em] sm:text-4xl"><ScrollWords text={t.faqTitle} /></h2>
-            <motion.p {...fadeUp} className="max-w-sm text-sm leading-7 text-muted-foreground lg:justify-self-end">{t.faqBody}</motion.p>
-          </div>
-          <div className="mt-12">
-            <div className="space-y-3">
-              {t.faq.map(([question, answer], index) => (
-                <motion.div key={question} {...fadeUp} transition={{ ...fadeUp.transition, delay: index * .06 }} className="overflow-hidden rounded-2xl border border-accent/10 bg-[#07130f]">
-                  <button
-                    onClick={() => setOpen(open === index ? -1 : index)}
-                    aria-expanded={open === index}
-                    className="flex w-full items-center justify-between px-6 py-5 text-left text-sm font-medium"
-                  >
-                    {question}
-                    <span aria-hidden className={`text-white/50 transition-transform duration-300 ${open === index ? "rotate-180" : ""}`}>⌄</span>
-                  </button>
-                  <AnimatePresence initial={false}>
-                    {open === index && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: .35, ease: EASE }}
-                      >
-                        <p className="px-6 pb-6 text-xs leading-6 text-muted-foreground">{answer}</p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
 
       </div>
     </div>
@@ -644,16 +600,16 @@ function ScrollParallax({
 
 const heroCopy = {
   es: {
-    top: "Todo tu negocio",
-    bottom: "conectado por IA.",
+    top: "Menos herramientas,",
+    bottom: "más resultados.",
     tagline: "La gestión del mañana.",
     paragraph: "Finanzas, CRM, tareas, documentos, agentes IA y más. Integrado con tu banco, Google Workspace y Stripe.",
     primary: "Empezar",
     secondary: "Cómo funciona",
   },
   en: {
-    top: "Your entire business",
-    bottom: "connected by AI.",
+    top: "Fewer tools,",
+    bottom: "better results.",
     tagline: "Management of tomorrow.",
     paragraph: "Finance, CRM, tasks, documents, AI agents and more. Integrated with your bank, Google Workspace and Stripe.",
     primary: "Get Started",
@@ -738,9 +694,9 @@ export function EvoHero() {
                 <AnimatePresence mode="wait" initial={false}>
                   <motion.span
                     key={word}
-                    initial={{ y: "70%", opacity: 0 }}
-                    animate={{ y: "0%", opacity: 1 }}
-                    exit={{ y: "-60%", opacity: 0 }}
+                    initial={{ x: "-70%", opacity: 0 }}
+                    animate={{ x: "0%", opacity: 1 }}
+                    exit={{ x: "70%", opacity: 0 }}
                     transition={{ duration: .5, ease: EASE }}
                     className="absolute inset-x-0 top-0 inline-block whitespace-nowrap"
                   >

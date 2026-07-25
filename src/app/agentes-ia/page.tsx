@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Header } from "@/components/layout/header";
 import { EvoFooter } from "@/components/sections/evo-landing";
@@ -38,16 +39,19 @@ export default function AgentesIaPage() {
     <>
       <Header />
       <main className="relative overflow-hidden bg-background text-foreground">
-        <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-[560px] bg-[radial-gradient(60%_100%_at_50%_0%,rgba(89,187,149,.14),transparent_70%)]" />
-
-        <div className="relative z-10 mx-auto max-w-[1200px] px-5 py-20 sm:px-8">
-          {/* hero */}
-          <div className="mx-auto max-w-2xl text-center">
-            <p className="font-mono text-[11px] uppercase tracking-[.26em] text-accent">AI Layer</p>
-            <h1 className="text-balance mt-4 text-[clamp(2.4rem,5vw,3.8rem)] font-medium leading-[1.08] tracking-[-.03em]">
+        {/* HERO (base compartida) */}
+        <section className="relative border-b border-border">
+          <div aria-hidden className="hero-rings pointer-events-none absolute inset-0 opacity-80" />
+          <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_90%_at_50%_0%,rgba(89,187,149,.12),transparent_70%)]" />
+          <div className="relative mx-auto max-w-3xl px-5 pb-20 pt-20 text-center sm:px-8 lg:pt-24">
+            <p className="mx-auto inline-flex items-center rounded-full border border-white/12 bg-white/[.035] px-4 py-2 text-[11px] text-white/60">
+              <span aria-hidden className="mr-2 text-accent">✦</span>
+              AI Layer · Agentes de 8ity
+            </p>
+            <h1 className="text-balance mt-8 text-[clamp(2.8rem,6.5vw,5.25rem)] font-medium leading-[.98] tracking-[-.045em]">
               Agentes IA que trabajan contigo.
             </h1>
-            <p className="mx-auto mt-5 max-w-xl text-sm leading-7 text-muted-foreground">
+            <p className="mx-auto mt-7 max-w-2xl text-sm leading-7 text-muted-foreground sm:text-base">
               Sistema multi-agente con Claude y Gemini, conectado a tus datos vía MCP. Concilia cuentas, prepara board decks, escribe código — y lo hace de forma autónoma con conocimiento completo del negocio.
             </p>
             <div className="mt-7 flex flex-wrap justify-center gap-2">
@@ -56,6 +60,32 @@ export default function AgentesIaPage() {
               ))}
             </div>
           </div>
+        </section>
+
+        {/* ¿QUÉ ES UN AGENTE IA? */}
+        <section className="border-b border-border bg-white/[.018]">
+          <div className="mx-auto grid max-w-[1100px] items-center gap-12 px-5 py-16 sm:px-8 lg:grid-cols-2">
+            <div>
+              <p className="font-mono text-[11px] uppercase tracking-[.26em] text-accent">¿Qué es un agente IA?</p>
+              <p className="mt-6 text-lg leading-8 text-white/75 sm:text-xl sm:leading-9">
+                No es un chatbot que solo responde. Un agente IA <span className="text-white">entiende el contexto de tu empresa</span> —datos, documentos, usuarios y procesos—, <span className="text-white">decide</span> qué hacer y <span className="text-white">ejecuta acciones reales</span> con permisos: analiza, genera contenido y automatiza tareas por ti.
+              </p>
+            </div>
+            <div className="relative overflow-hidden rounded-2xl border border-white/12 bg-[#0d141d]/90 p-2 shadow-[0_30px_90px_rgba(0,0,0,.5)] sm:p-3">
+              <div className="flex h-8 items-center gap-1.5 px-2">
+                <span className="size-2 rounded-full bg-white/20" />
+                <span className="size-2 rounded-full bg-white/14" />
+                <span className="size-2 rounded-full bg-accent/65" />
+                <span className="ml-auto font-mono text-[8px] uppercase tracking-[.18em] text-white/35">8ity · ai</span>
+              </div>
+              <div className="relative aspect-[16/10] overflow-hidden rounded-lg border border-white/10 bg-[#101720]">
+                <Image src="/product/ai-agents.webp" alt="Agentes IA de 8ity" fill sizes="(max-width: 1023px) 90vw, 45vw" className="object-cover object-top" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div className="relative z-10 mx-auto max-w-[1200px] px-5 pb-20 sm:px-8">
 
           {/* agents grid */}
           <section className="mt-20">

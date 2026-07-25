@@ -343,7 +343,7 @@ export function AgentShowcase({ variant = "pc" }: { variant?: "pc" | "phone" }) 
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
+          viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.8, ease: EASE }}
           className="mx-auto max-w-2xl text-center"
         >

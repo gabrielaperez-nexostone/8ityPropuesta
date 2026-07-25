@@ -49,7 +49,7 @@ type Branch = { readonly pill: string; readonly first: string; readonly second: 
 const EASE = [0.16, 1, 0.3, 1] as const;
 const CYCLE_MS = 16000;
 
-export function IntelligenceTimeline() {
+export function IntelligenceTimeline({ variant = "full" }: { variant?: "full" | "header" | "body" } = {}) {
   const { language } = useLanguage();
   const t = copy[language];
   const sectionRef = useRef<HTMLElement>(null);
@@ -123,27 +123,62 @@ export function IntelligenceTimeline() {
     };
   }, [draw, syncActiveStep]);
 
+  if (variant === "header") {
+    return (
+      <section id="como-funciona" className="scroll-mt-28 py-16 text-center">
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: .2 }}
+          transition={{ duration: .7, ease: EASE }}
+          className="font-mono text-[11px] uppercase tracking-[.26em] text-accent"
+        >
+          {t.eyebrow}
+        </motion.p>
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: .2 }}
+          transition={{ duration: .8, ease: EASE, delay: .1 }}
+          className="text-balance mx-auto mt-4 max-w-3xl text-[clamp(2rem,4.2vw,3.4rem)] font-medium leading-[1.1] tracking-[-.02em] text-white"
+        >
+          {t.title}
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: .2 }}
+          transition={{ duration: .9, ease: EASE, delay: .2 }}
+          className="mx-auto mt-5 max-w-xl text-sm leading-7 text-muted-foreground"
+        >
+          {t.body}
+        </motion.p>
+      </section>
+    );
+  }
+
   return (
     <section
-      id="como-funciona"
+      id={variant === "body" ? undefined : "como-funciona"}
       ref={sectionRef}
       className="relative my-16 scroll-mt-28 overflow-hidden rounded-[2rem] border border-border bg-[#030810] px-5 py-16 text-white sm:px-8 lg:px-10"
     >
       <div aria-hidden className="pointer-events-none absolute -top-32 right-[-8%] h-80 w-80 rounded-full bg-accent/[.06] blur-3xl" />
 
+      {variant !== "body" && (
       <div className="grid gap-5 lg:grid-cols-[1fr_.58fr] lg:items-end">
         <div>
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: .8 }}
+            viewport={{ once: true, amount: .2 }}
             transition={{ duration: .7, ease: EASE }}
             className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-[.18em] text-accent"
           >
             <motion.span
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
-              viewport={{ once: true, amount: .8 }}
+              viewport={{ once: true, amount: .2 }}
               transition={{ duration: .9, ease: EASE, delay: .15 }}
               className="h-px w-8 origin-left bg-accent/60"
               aria-hidden
@@ -157,13 +192,14 @@ export function IntelligenceTimeline() {
         <motion.p
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: .6 }}
+          viewport={{ once: true, amount: .2 }}
           transition={{ duration: .9, ease: EASE, delay: .3 }}
           className="max-w-lg text-sm leading-6 text-white/55 lg:justify-self-end"
         >
           {t.body}
         </motion.p>
       </div>
+      )}
 
       <div className="mt-10 overflow-hidden">
         <motion.div

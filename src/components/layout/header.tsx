@@ -13,7 +13,7 @@ const nav = {
     { label: "Integraciones", href: "/integraciones" },
     { label: "AI Agents", href: "/agentes-ia" },
     { label: "Precios", href: "/precios" },
-    { label: "FAQs", href: "/#faq" },
+    { label: "FAQs", href: "/faqs" },
   ],
   en: [
     { label: "How it works", href: "/#como-funciona" },
@@ -21,7 +21,7 @@ const nav = {
     { label: "Integrations", href: "/integraciones" },
     { label: "AI Agents", href: "/agentes-ia" },
     { label: "Pricing", href: "/precios" },
-    { label: "FAQs", href: "/#faq" },
+    { label: "FAQs", href: "/faqs" },
   ],
 } as const;
 
@@ -30,6 +30,7 @@ export function Header() {
   const pathname = usePathname();
   const items = nav[language].map((item) => ({
     ...item,
+    active: !item.href.includes("#") && pathname === item.href,
     href:
       pathname === "/" && item.href.startsWith("/#")
         ? item.href.slice(1)
@@ -77,7 +78,8 @@ export function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className="rounded-full px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-white/[.05] hover:text-foreground"
+              aria-current={item.active ? "page" : undefined}
+              className={`rounded-full px-3 py-2 text-sm font-medium transition-colors ${item.active ? "bg-accent/15 text-accent" : "text-muted-foreground hover:bg-white/[.05] hover:text-foreground"}`}
             >
               {item.label}
             </Link>
