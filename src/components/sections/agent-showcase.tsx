@@ -332,7 +332,7 @@ export function AgentShowcase({ variant = "pc" }: { variant?: "pc" | "phone" }) 
   const Device = variant === "phone" ? Phone : Monitor;
 
   return (
-    <section id={variant === "phone" ? "agent-voice" : "agent"} className="relative -mx-5 flex min-h-screen flex-col justify-center overflow-hidden bg-background py-20 sm:-mx-8">
+    <section id={variant === "phone" ? "agent-voice" : "agent"} className="relative -mx-5 overflow-hidden bg-background py-20 sm:-mx-8">
       {/* fade in from hero */}
       <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-40 bg-gradient-to-b from-background to-transparent" />
       <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_40%,rgba(89,187,149,.10),transparent_70%)]" />
@@ -358,7 +358,7 @@ export function AgentShowcase({ variant = "pc" }: { variant?: "pc" | "phone" }) 
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 1.2, ease: EASE }}
-          className="relative mx-auto mt-14 hidden h-[860px] w-full max-w-[1120px] lg:block"
+          className="relative mx-auto mt-6 hidden h-[860px] w-full max-w-[1120px] lg:block"
         >
           {/* connector lines */}
           <svg aria-hidden className="absolute inset-0 h-full w-full" viewBox="0 0 1120 860" fill="none" preserveAspectRatio="none">

@@ -260,6 +260,9 @@ export function EvoLanding() {
         {/* statement (tiles) */}
         <ScaleStatement t={t} h={heroCopy[language]} />
 
+        {/* CÓMO FUNCIONA — timeline */}
+        <IntelligenceTimeline variant="body" />
+
         {/* REDEFINING */}
         <section className="grid gap-12 pb-24 lg:grid-cols-[.9fr_1.1fr] lg:items-center">
           <div>
@@ -690,7 +693,7 @@ export function EvoHero() {
             <span className="block">{t.scaleLine1}</span>
             <span className="block whitespace-nowrap">
               {t.scaleBefore}
-              <span className="relative inline-block h-[1.08em] w-[10.25ch] overflow-hidden align-bottom text-left text-accent">
+              <span className="relative inline-block h-[1.15em] w-[10.25ch] overflow-x-hidden align-bottom text-left text-accent">
                 <AnimatePresence mode="wait" initial={false}>
                   <motion.span
                     key={word}
@@ -698,7 +701,7 @@ export function EvoHero() {
                     animate={{ x: "0%", opacity: 1 }}
                     exit={{ x: "70%", opacity: 0 }}
                     transition={{ duration: .5, ease: EASE }}
-                    className="absolute inset-x-0 top-0 inline-block whitespace-nowrap"
+                    className="absolute inset-x-0 bottom-0 inline-block whitespace-nowrap"
                   >
                     {word}
                   </motion.span>

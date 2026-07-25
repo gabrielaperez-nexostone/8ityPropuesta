@@ -203,17 +203,9 @@ export function IntelligenceTimeline({ variant = "full" }: { variant?: "full" | 
 
       <div className="mt-10 overflow-hidden">
         <motion.div
-          initial={{ scaleX: 0 }}
-          whileInView={{ scaleX: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.2, ease: EASE }}
-          className="h-px origin-left bg-white/10"
-          aria-hidden
-        />
-        <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: true, amount: .25 }}
+          viewport={{ once: true, amount: .2 }}
           transition={{ duration: 1, delay: .2 }}
         >
           <canvas ref={canvasRef} className="block aspect-[1184/500] min-h-[300px] w-full" aria-hidden="true" />
