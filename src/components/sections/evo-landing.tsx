@@ -693,7 +693,7 @@ export function EvoHero() {
             <span className="block">{t.scaleLine1}</span>
             <span className="block whitespace-nowrap">
               {t.scaleBefore}
-              <span className="relative inline-block h-[1.15em] w-[10.25ch] overflow-x-hidden align-bottom text-left text-accent">
+              <span className="relative inline-block h-[1.25em] w-[10.25ch] overflow-hidden align-bottom text-left text-accent">
                 <AnimatePresence mode="wait" initial={false}>
                   <motion.span
                     key={word}
